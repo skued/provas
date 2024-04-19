@@ -31,8 +31,11 @@
             margin: 10px auto;
         }
 
-        h1 {
+        h1, h2, h3 {
             text-align: center;
+        }
+
+        h1 {
             font-weight: 700;
             font-size: 2.5em;
             color: #333;
@@ -43,7 +46,6 @@
         h2 {
             font-size: 2.0em;
             color: #555;
-            text-align: left;
             margin-top: 20px;
             margin-bottom: 10px;
         }
@@ -51,7 +53,6 @@
         h3 {
             font-size: 1.5em;
             color: #666;
-            text-align: left;
             margin-top: 10px;
             margin-bottom: 10px;
         }
@@ -63,7 +64,6 @@
 
         li {
             margin-bottom: 5px;
-            font-size: 1em;
         }
 
         a {
@@ -84,6 +84,15 @@
             margin-top: 40px;
             text-align: center;
         }
+
+        .monitoria-link {
+            color: #8fbc8f; /* Verde claro tendendo para cinza */
+            text-decoration: none;
+        }
+
+        .monitoria-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -92,13 +101,13 @@
         <img src="https://skued.com.br/wp-content/uploads/2023/11/skued-pre-vestibular.png" alt="skued Logo" class="logo">
         <h1>Universidade de Vassouras</h1>
         
-        <!-- 2024 -->
-        <div>
-            <h2>2024 – 1º Semestre</h2>
-            <ul>
-                <li><a href="https://drive.google.com/file/d/1w8xBzbedTFyouTETZArn5T7QRLoBtL4f/view?usp=drive_link" target="_blank">Prova</a></li>
-                <li><a href="https://drive.google.com/file/d/1IVzsnvbGzdHdXdr1Gs9X0g9dHsF_O3Cq/view?usp=drive_link" target="_blank">Gabarito</a></li>
-            </ul>
+        <!-- Ano 2024 -->
+        <h2>2024 – 1º Semestre</h2>
+        <ul>
+            <li><a href="https://drive.google.com/file/d/1w8xBzbedTFyouTETZArn5T7QRLoBtL4f/view?usp=drive_link" target="_blank">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1IVzsnvbGzdHdXdr1Gs9X0g9dHsF_O3Cq/view?usp=drive_link" target="_blank">Gabarito</a></li>
+        </ul>
+
         </div>
 
         <!-- 2023 -->
@@ -269,11 +278,12 @@
                 <li><a href="https://drive.google.com/file/d/1cLuaDSsvBRnw9s5kFiyqYRmDsNSvryvB/view?usp=drive_link" target="_blank">Gabarito</a></li>
             </ul>
         </div>
+    
     </div>
     <div class="monitoria">
         <p>Tire suas dúvidas na Monitoria [e-sk]!<br>
         Agende o seu atendimento! 🐶<br>
-        <a href="https://www.padlet.com/skued/monitoria">www.padlet.com/skued/monitoria</a></p>
+        <a href="https://www.padlet.com/skued/monitoria" class="monitoria-link">www.padlet.com/skued/monitoria</a></p>
     </div>
 </body>
 
