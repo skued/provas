@@ -4,80 +4,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>skued - Repositório de provas</title>
+    <title>Repositório de provas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Exo 2', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #c5c5c5;
+            background-color: #f4f4f4;
+            color: #333;
         }
 
         .container {
-            max-width: 800px;
-            margin: 40px auto 0; /* Centralizando a página horizontalmente e movendo para baixo */
+            max-width: 960px;
+            margin: 20px auto;
             padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .logo {
+            max-width: 150px;
+            margin: 20px auto;
+            display: block;
         }
 
         h1, h2 {
-            text-align: center;
-            margin: 0; /* Removendo margens */
+            font-weight: 700;
+            color: #333;
         }
 
         h1 {
-            font-size: 36px;
-            color: #333;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
+            font-size: 2.5em;
         }
 
         h2 {
-            font-size: 28px;
-            color: #444;
-            margin-top: 20px; /* Ajustando a margem superior */
+            font-size: 1.8em;
+            color: #555;
+            margin-top: 25px;
             margin-bottom: 20px;
         }
 
         ul {
-            list-style-type: none;
-            padding-left: 0;
+            list-style: none;
+            padding: 0;
         }
 
         li {
-            margin-bottom: 10px;
-            text-align: center; /* Centralizando os links */
+            padding: 10px;
         }
 
         a {
             color: #007bff;
             text-decoration: none;
+            font-weight: 600;
         }
 
         a:hover {
             text-decoration: underline;
         }
 
-        /* Estilo para a nova caixa */
         .monitoria {
-            background-color: #001f3f; /* Cor de fundo azul marinho */
-            color: #fff; /* Cor do texto branco */
+            background-color: #004080; /* Cor de fundo mais escura */
+            color: #ffffff;
             padding: 20px;
-            border-radius: 5px;
-            margin-top: 60px; /* Ajustando a margem superior */
-            text-align: center; /* centralizar texto */
+            border-radius: 8px;
+            margin-top: 40px;
+            text-align: center; /* Texto centralizado */
         }
 
         .monitoria p {
-            margin: 0; /* Removendo margem para ajustar */
+            font-size: 1em; /* Tamanho do texto diminuído */
+            margin: 10px 0;
+        }
+
+        .monitoria a {
+            color: #ffdd57;
+            font-weight: 700;
+        }
+
+        .monitoria a:hover {
+            color: #ffc107;
+            text-decoration: none;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>skued - Repositório de provas</h1>
+        <img src="https://skued.com.br/wp-content/uploads/2023/11/skued-pre-vestibular.png" alt="skued Logo" class="logo">
+        <h1>Repositório de provas</h1>
         <h2>Universidade do Estado do Rio de Janeiro (UERJ)</h2>
         <ul>
             <li><a href="provas_uerj.html">Acessar provas e gabaritos</a></li>
@@ -87,7 +106,6 @@
             <li><a href="provas_vassouras.html">Acessar provas e gabaritos</a></li>
         </ul>
     </div>
-    <!-- Nova caixa para monitoria -->
     <div class="monitoria">
         <p>Tire suas dúvidas na Monitoria [e-sk]!<br>
         Agende o seu atendimento! 🐶<br>
