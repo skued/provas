@@ -65,6 +65,10 @@
     @media (min-width: 860px){
       .grid{ grid-template-columns: repeat(3, 1fr); }
     }
+    @media (min-width: 1200px){
+      /* quando houver 4 cards, em telas largas mostramos 4 colunas */
+      .grid{ grid-template-columns: repeat(4, 1fr); }
+    }
 
     .card{
       background:var(--surface);
@@ -179,6 +183,13 @@
         <span class="chip">Atualizado</span>
         <h2><a href="provas_vassouras.html">Univassouras – Universidade de Vassouras</a></h2>
         <p>Encontre as provas objetivas e discursivas aplicadas nos diferentes semestres do vestibular.</p>
+      </article>
+
+      <!-- FGV -->
+      <article class="card">
+        <span class="chip">Atualizado</span>
+        <h2><a href="provas_fgv.html">FGV – Fundação Getulio Vargas</a></h2>
+        <p>Provas objetivas e discursivas do vestibular de Direito (Rio de Janeiro).</p>
       </article>
     </main>
 

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skued - Repositório de Provas • FGV (Rio de Janeiro) – Direito</title>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #f6f7fb;
+      --surface: #fff;
+      --text: #1f2937;
+      --line: #e5e7eb;
+      --brand-2: #0e1726;
+      --disc-bg: #fdf6fa;      /* fundo sutil rosado */
+      --disc-bar: #ff0077;     /* rosa da marca na borda */
+      --radius: 14px;
+      --shadow: 0 8px 24px rgba(0,0,0,0.06);
+      --link: #0b1736;         /* azul marinho da logo */
+      --link-hover: #ff0077;   /* rosa da marca */
+      --muted: #6b7280;
+      --pill-bg: #eef2ff;
+      --pill-text: #0b1736;
+      --pill-border: #c7d2fe;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      font-family:'Exo 2',sans-serif;
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .container{
+      max-width: 1000px;
+      margin: 28px auto;
+      padding: 0 20px 28px;
+    }
+
+    .header{
+      display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px;
+      margin-bottom: 14px;
+      text-align:center;
+    }
+    .logo{ width:140px; height:auto; display:block; }
+    h1{
+      margin: 0;
+      font-weight:700;
+      font-size: clamp(22px, 3vw, 32px);
+      color: var(--brand-2);
+    }
+    .pill{
+      margin-top: 6px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size: 13px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--pill-bg);
+      color: var(--pill-text);
+      border: 1px solid var(--pill-border);
+    }
+
+    .year{
+      margin-top: 28px;
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+    }
+    .year > h2{
+      margin:0 0 16px;
+      font-size: clamp(18px, 2.3vw, 24px);
+      font-weight:700;
+      color: var(--brand-2);
+    }
+
+    .columns{
+      display: grid;
+      gap: 16px;
+    }
+    @media (min-width: 860px){
+      .columns{
+        grid-template-columns: 1fr; /* padrão: uma coluna */
+      }
+      .columns:has(.card + .card){
+        grid-template-columns: 1fr 1fr; /* 2 colunas só se houver 2 cards */
+        align-items: stretch;
+      }
+    }
+
+    .card{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px 16px 14px;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      min-height: 100%;
+    }
+    .card h3{
+      margin:0;
+      font-size: clamp(16px, 2vw, 20px);
+      color: var(--text);
+    }
+    .links{
+      list-style:none; padding:0; margin:0;
+      display:flex; flex-direction:column; gap:6px;
+    }
+    .links li{ line-height:1.5; }
+
+    a{
+      color: var(--link);
+      text-decoration:none;
+      font-weight:600;
+      transition: color .2s ease;
+    }
+    a:hover, a:focus{
+      color: var(--link-hover);
+      text-decoration: underline;
+      outline: none;
+    }
+    a:focus-visible{
+      outline: 2px solid var(--link-hover);
+      outline-offset: 2px;
+    }
+
+    .card--disc{
+      background: var(--disc-bg);
+      border-left: 6px solid var(--disc-bar);
+    }
+
+    .highlight { color: #ff0077; font-weight: 700; }
+    .muted-footer{ color: rgba(255,255,255,0.7); }
+
+    .monitoria{
+      margin-top: 28px;
+      background-color:#08093b;
+      color:#fff;
+      border-radius: var(--radius);
+      padding: 18px;
+      text-align:center;
+      box-shadow: var(--shadow);
+    }
+    .monitoria a{ color:#ff0077; font-weight:700; }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header class="header">
+      <img src="https://skued.com.br/wp-content/uploads/2024/09/skued-02.png" alt="Logo Skued" class="logo" />
+      <h1>Skued – Repositório de Provas • FGV (Rio de Janeiro)</h1>
+      <span class="pill" aria-label="Direito - Rio">Direito - Rio</span>
+    </header>
+
+    <!-- ================= 2025 ================= -->
+    <section class="year" aria-labelledby="y2025">
+      <h2 id="y2025">2025</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>Provas Objetivas</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1IN24ftZYpirrV-ksufpGEF0meh6QJHVx/view?usp=drive_link" target="_blank">Prova Objetiva (Matemática, Língua Portuguesa, Inglês e Ciências Humanas)</a></li>
+            <li><a href="https://drive.google.com/file/d/1D9Po5LrsHfZjMkuLsenQjI2bDLq2QVe2/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+        <article class="card card--disc" aria-label="Exames Discursivos 2025">
+          <h3>Provas Discursivas</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1fJnDxmk2ODYDSE-MtcYe6qwojxVD6M5R/view?usp=drive_link" target="_blank">Prova Discursiva (Ciências Humanas)</a></li>
+            <li><a href="https://drive.google.com/file/d/1VZn4SmJHhvh3rcKDqSNktzwv8Cf2aumj/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 2024 ================= -->
+    <section class="year" aria-labelledby="y2024">
+      <h2 id="y2024">2024</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>Provas Objetivas</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/186roLtwAJ0nQ4pbHOzTtV13vh9YU0kI6/view?usp=drive_link" target="_blank">Prova Objetiva (Matemática, Língua Portuguesa, Inglês e Ciências Humanas)</a></li>
+            <li><a href="https://drive.google.com/file/d/1QUj0G2i8UHzgeKzF8-LVVi_6RsSZHfi9/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+        <article class="card card--disc" aria-label="Exames Discursivos 2024">
+          <h3>Provas Discursivas</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1fJnDxmk2ODYDSE-MtcYe6qwojxVD6M5R/view?usp=drive_link" target="_blank">Prova Discursiva (Ciências Humanas)</a></li>
+            <li><a href="https://drive.google.com/file/d/1O3eoamLXTAJIKblcA3Ct1jF4OIjrA5B8/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 2023 ================= -->
+    <section class="year" aria-labelledby="y2023">
+      <h2 id="y2023">2023</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>Provas Objetivas</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/186roLtwAJ0nQ4pbHOzTtV13vh9YU0kI6/view?usp=drive_link" target="_blank">Prova Objetiva (Matemática e Ciências Humanas)</a></li>
+            <li><a href="https://drive.google.com/file/d/1QUj0G2i8UHzgeKzF8-LVVi_6RsSZHfi9/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+        <article class="card card--disc" aria-label="Exames Discursivos 2023">
+          <h3>Provas Discursivas</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1VWq_0h0awaLATe5QS98DahIBp3NpcAT6/view?usp=drive_link" target="_blank">Prova Discursiva (Ciências Humanas)</a></li>
+            <li><a href="https://drive.google.com/file/d/198nREBU7_1Lg7fvtpJKNF2dh8ui4iDkF/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 2022 ================= -->
+    <section class="year" aria-labelledby="y2022">
+      <h2 id="y2022">2022</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>Provas Objetivas</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1fwLe3LbKYn0_OtlM4kru4Mqea2A5uC4z/view?usp=drive_link" target="_blank">Prova Objetiva (Matemática e Ciências Humanas)</a></li>
+            <li><a href="https://drive.google.com/file/d/1FyLtU4lljm-6PqjSwgSaenZ7u1bA8LPC/view?usp=drive_link" target="_blank">Gabarito</a></li>
+
+            <li><a href="https://drive.google.com/file/d/1fQFnXqf3VrKnuTiP5SFiHWAlId6w9mhP/view?usp=drive_link" target="_blank">Prova Objetiva (Língua Portuguesa e Inglês – 26/11/2021)</a></li>
+            <li><a href="https://drive.google.com/file/d/11qCor78XXCrfKCCmGJWrkTYgjXPdufn_/view?usp=drive_link" target="_blank">Gabarito</a></li>
+
+            <li><a href="https://drive.google.com/file/d/1AaRN-T86gy7ZnqbyHGu1V7mZLNbW7UW-/view?usp=drive_link" target="_blank">Prova Objetiva (Língua Portuguesa e Inglês – 15/11/2021)</a></li>
+            <li><a href="https://drive.google.com/file/d/1VuGRScdn7hDKj9XEWZ4s1olY5fFgougm/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+        <article class="card card--disc" aria-label="Exames Discursivos 2022">
+          <h3>Provas Discursivas</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1fQFnXqf3VrKnuTiP5SFiHWAlId6w9mhP/view?usp=drive_link" target="_blank">Prova Discursiva (Ciências Humanas)</a></li>
+            <li><a href="https://drive.google.com/file/d/1E2fpryKZOJivBRYSOZDVJTPQ84wt-gXI/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 2021 ================= -->
+    <section class="year" aria-labelledby="y2021">
+      <h2 id="y2021">2021</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>Provas Objetivas</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1NIA2zF5PwYd3NKgvclmM9oVkXi0ZlBCZ/view?usp=drive_link" target="_blank">Prova Objetiva (Matemática e Ciências Humanas)</a></li>
+            <li><a href="https://drive.google.com/file/d/101DKxW55MREbdvTsSSOjPJe-PQuUHnWq/view?usp=drive_link" target="_blank">Gabarito</a></li>
+
+            <li><a href="https://drive.google.com/file/d/1XKBF5eI8dpA9B6AtiJ-iC-b1g275XFD9/view?usp=drive_link" target="_blank">Prova Objetiva (Língua Portuguesa e Inglês)</a></li>
+            <li><a href="https://drive.google.com/file/d/1pkgAqsvv1ls5XDa7zseP3v_5xFFgEy2-/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+        <article class="card card--disc" aria-label="Exames Discursivos 2021">
+          <h3>Provas Discursivas</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1j2H4m5azOBdJs5k6cGwtTuqsTYr4cChw/view?usp=drive_link" target="_blank">Prova Discursiva (Ciências Humanas)</a></li>
+            <li><a href="https://drive.google.com/file/d/1R16rllW6Z-vZjxUUsgjEA7Fd78N74yfm/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 2020 ================= -->
+    <section class="year" aria-labelledby="y2020">
+      <h2 id="y2020">2020</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>Provas Objetivas</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/14erCnoqOkG2trJA5dWwXbYRm2XAFBWsL/view?usp=drive_link" target="_blank">Prova Objetiva (Matemática, Língua Portuguesa, Inglês e Ciências Humanas)</a></li>
+            <li><a href="https://drive.google.com/file/d/1blNhEsFw0UpI3LppcHwduZhPRMLK0MX4/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+        <article class="card card--disc" aria-label="Exames Discursivos 2020">
+          <h3>Provas Discursivas</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/100ard45qxlAakpq-FXkcbbNc-eblLL9a/view?usp=drive_link" target="_blank">Prova Discursiva – Geografia</a></li>
+            <li><a href="https://drive.google.com/file/d/1cU5QuHzRugiSSkQbhqe9lV6V_iKlV2b8/view?usp=drive_link" target="_blank">Gabarito</a></li>
+
+            <li><a href="https://drive.google.com/file/d/1hz-9IXlqH5oXMP_GMps5Lj3UDaPhrV5p/view?usp=drive_link" target="_blank">Prova Discursiva – História</a></li>
+            <li><a href="https://drive.google.com/file/d/1EcgJqY0FIZ-TAf4dCxmDdzR6hQtpzciW/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 2019 ================= -->
+    <section class="year" aria-labelledby="y2019">
+      <h2 id="y2019">2019</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>Provas Objetivas</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1Ge5EFAehMVIQzJ5PaAF4n1dCjvRTzIYl/view?usp=drive_link" target="_blank">Prova Objetiva (Matemática, Língua Portuguesa, Inglês e Ciências Humanas)</a></li>
+            <li><a href="https://drive.google.com/file/d/1M89t0DMWgmw2ZjqLALCJW1rMp00y50KA/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+        <article class="card card--disc" aria-label="Exames Discursivos 2019">
+          <h3>Provas Discursivas</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1GDKX1IgiLYZ8bvfe2g88V83mKyDHTeyT/view?usp=drive_link" target="_blank">Prova Discursiva – Geografia</a></li>
+            <li><a href="https://drive.google.com/file/d/1z_C3DEuX5uWp5uODupLo9K3wRS6o81BZ/view?usp=drive_link" target="_blank">Gabarito</a></li>
+
+            <li><a href="https://drive.google.com/file/d/1UmvIzoPIPV3IFNKH8nehJxHz2sn8vUK0/view?usp=drive_link" target="_blank">Prova Discursiva – História</a></li>
+            <li><a href="https://drive.google.com/file/d/1mH8s8u52gsZ51RN_5oPcCi9REsBhOuRM/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 2018 ================= -->
+    <section class="year" aria-labelledby="y2018">
+      <h2 id="y2018">2018</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>Provas Objetivas</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1-dRMX9i75ERczcSBy8oABLbEhm94HZc1/view?usp=drive_link" target="_blank">Prova Objetiva (Matemática, Língua Portuguesa, Inglês e Ciências Humanas)</a></li>
+            <li><a href="https://drive.google.com/file/d/1nJqH5K02zNkhjDl20tq_vcOIntp5Ug5J/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+        <article class="card card--disc" aria-label="Exames Discursivos 2018">
+          <h3>Provas Discursivas</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/12rOJ1LyVFa7W8YaXZu4FG59dccUp7hpf/view?usp=drive_link" target="_blank">Prova Discursiva – Geografia</a></li>
+            <li><a href="https://drive.google.com/file/d/1ImqbIKQhqATBw2daONopEEbHFVBFkdsx/view?usp=drive_link" target="_blank">Gabarito</a></li>
+
+            <li><a href="https://drive.google.com/file/d/1-RTXLE2FR-F79_S-QUEGcrnTqcV88N0_/view?usp=drive_link" target="_blank">Prova Discursiva – História</a></li>
+            <li><a href="https://drive.google.com/file/d/1JFy3Qt_hHsdd5Ok0ZK_pSFFlwDL9AoMq/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 2017 ================= -->
+    <section class="year" aria-labelledby="y2017">
+      <h2 id="y2017">2017</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>Provas Objetivas</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1Bsea_ta4PW8pQE-hMWj_pnF3AeiaAoJu/view?usp=drive_link" target="_blank">Prova Objetiva (Matemática, Língua Portuguesa, Inglês e Ciências Humanas)</a></li>
+            <li><a href="https://drive.google.com/file/d/1BptuD3tPAywUSdRbDzZd25fENZe9i0qi/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+        <article class="card card--disc" aria-label="Exames Discursivos 2017">
+          <h3>Provas Discursivas</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1JtLb5GWarvL1MoQXFSgS4lH5GXeSnD_q/view?usp=drive_link" target="_blank">Prova Discursiva – Geografia</a></li>
+            <li><a href="https://drive.google.com/file/d/1S0D0H0eM_wtI78wDqFX4sOhoorD38vJP/view?usp=drive_link" target="_blank">Gabarito</a></li>
+
+            <li><a href="https://drive.google.com/file/d/1Q4-GGUtEPBnGpDaDKHpvULCsOOVo8_JA/view?usp=drive_link" target="_blank">Prova Discursiva – História</a></li>
+            <li><a href="https://drive.google.com/file/d/1UuYmj-WMC05VpDRQwW04V66mUG_TTSYL/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 2016 ================= -->
+    <section class="year" aria-labelledby="y2016">
+      <h2 id="y2016">2016</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>Provas Objetivas</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1A2-_tpZKTke3_SYA8Brm1GHgBFxiiQod/view?usp=drive_link" target="_blank">Prova Objetiva (Matemática, Língua Portuguesa, Inglês e Ciências Humanas)</a></li>
+            <li><a href="https://drive.google.com/file/d/1_9z2npv3kZT2z2RR_z5bD-_ooV1ZS56Q/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+        <article class="card card--disc" aria-label="Exames Discursivos 2016">
+          <h3>Provas Discursivas</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1JIRFtavAldRBtpDdPxJ1dLqNk_BzXzXQ/view?usp=drive_link" target="_blank">Prova Discursiva (Ciências Humanas)</a></li>
+            <li><a href="https://drive.google.com/file/d/18dfpVTRUTnxEo4r6Fi7PLoaYHi0r_76s/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="monitoria" aria-label="Monitoria e-sk">
+      <p><span class="highlight">Tire suas dúvidas na</span> <span class="muted-footer">Monitoria [e-sk]</span>!<br>
+      Agende o seu atendimento! 🐶<br>
+      <a href="https://www.padlet.com/skued/monitoria">www.padlet.com/skued/monitoria</a></p>
+    </footer>
+  </div>
+</body>
+</html>
