@@ -2,297 +2,456 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skued - Repositório de provas UERJ</title>
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Exo 2', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skued - Repositório de provas Univassouras</title>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #f6f7fb;
+      --surface: #fff;
+      --text: #1f2937;
+      --line: #e5e7eb;
+      --brand-2: #0e1726;
+      --disc-bg: #fdf6fa;
+      --disc-bar: #ff0077;
+      --radius: 14px;
+      --shadow: 0 8px 24px rgba(0,0,0,0.06);
+      --link: #0b1736;
+      --link-hover: #ff0077;
+    }
 
-        .container {
-            max-width: 960px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #ffffff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            border-radius: 8px;
-            text-align: left; /* Align text to the left */
-        }
+    *{box-sizing:border-box}
+    body{
+      font-family:'Exo 2',sans-serif;
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
 
-        .logo {
-            max-width: 150px;
-            display: block;
-            margin: 10px auto;
-        }
+    .container{
+      max-width: 1000px;
+      margin: 28px auto;
+      padding: 0 20px 28px;
+    }
 
-        h1 {
-            text-align: center; /* Center the title */
-            font-weight: 700;
-            font-size: 2.5em;
-            color: #333;
-            margin-top: 0;
-            margin-bottom: 20px;
-        }
+    .header{
+      display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px;
+      margin-bottom: 18px;
+    }
+    .logo{ width:140px; height:auto; display:block; }
+    h1{
+      margin: 0;
+      font-weight:700;
+      font-size: clamp(22px, 3vw, 32px);
+      text-align:center;
+      color: var(--brand-2);
+    }
 
-        h2, h3 {
-            text-align: left; /* Headers aligned to the left */
-        }
+    .year{
+      margin-top: 28px;
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+    }
+    .year > h2{
+      margin:0 0 16px;
+      font-size: clamp(18px, 2.3vw, 24px);
+      font-weight:700;
+      color: var(--brand-2);
+    }
 
-        h2 {
-            font-size: 2.0em;
-            color: #555;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
+    .columns{
+      display: grid;
+      gap: 16px;
+    }
+    @media (min-width: 860px){
+      .columns{
+        grid-template-columns: 1fr;            /* padrão: 1 coluna */
+      }
+      .columns:has(.card + .card){
+        grid-template-columns: 1fr 1fr;        /* usa 2 colunas quando há dois cards */
+      }
+    }
 
-        h3 {
-            font-size: 1.5em;
-            color: #666;
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
+    .card{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px 16px 14px;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      min-height: 100%;
+    }
+    .card h3{
+      margin:0;
+      font-size: clamp(16px, 2vw, 20px);
+      color: var(--text);
+    }
+    .links{
+      list-style:none; padding:0; margin:0;
+      display:flex; flex-direction:column; gap:6px;
+    }
+    .links li{ line-height:1.5; }
 
-        h4 {
-            font-size: 2.0em;
-            color: #333;
-            margin-top: 10px;
-            margin-bottom: 20px;
-        }
+    a{
+      color: var(--link);
+      text-decoration:none;
+      font-weight:600;
+      transition: color .2s ease;
+      word-break: break-word;
+    }
+    a:hover,
+    a:focus{
+      color: var(--link-hover);
+      text-decoration: underline;
+      outline: none;
+    }
+    a:focus-visible{
+      outline: 2px solid var(--link-hover);
+      outline-offset: 2px;
+    }
 
+    .card--disc{
+      background: var(--disc-bg);
+      border-left: 6px solid var(--disc-bar);
+    }
 
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            margin-bottom: 5px;
-        }
-
-        a {
-            color: #007bff;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .monitoria {
-            background-color: #08093b;
-            color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .monitoria-link {
-            color: #ff0077; /* pink */
-            text-decoration: none;
-        }
-
-        .monitoria-link:hover {
-            text-decoration: underline;
-        }
-    </style>
+    .monitoria{
+      margin-top: 28px;
+      background-color:#08093b;
+      color:#fff;
+      border-radius: var(--radius);
+      padding: 18px;
+      text-align:center;
+      box-shadow: var(--shadow);
+    }
+    .monitoria a{ color:#ff0077; font-weight:700; }
+    .muted{ color: rgba(255,255,255,0.7); }
+    .highlight { color:#ff0077; font-weight:700; }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <img src="https://skued.com.br/wp-content/uploads/2024/09/skued-02.png" alt="skued Logo" class="logo">
-        <h1>Skued - Repositório de provas - Univassouras</h1>
-        
-        <!-- 2025 -->
-        <div>
-            <h4>2025 – 1º Semestre</h4>
-            <ul>
-                <li><a href="https://drive.google.com/file/d/1Y_K7AhksKDbuiB94fcCVl1FOfyP7AZ95/view?usp=drive_link" target="_blank">Prova</a></li>
-                <li><a href="https://drive.google.com/file/d/1exu6q6cySZVPyG-tJsp2VlVubMZwiW9D/view?usp=drive_link" target="_blank">Gabarito</a></li>
-            </ul>
-        </div>
-        
-        <!-- 2024 -->
-        <div>
-            <h4>2024 – 2º Semestre</h4>
-            <ul>
-                <li><a href="https://drive.google.com/file/d/1f1LQSMDpqQgR35-z0hV-_05P7dg0sYIh/view?usp=drive_link" target="_blank">Prova</a></li>
-                <li><a href="https://drive.google.com/file/d/178Wx4Ov3Zd5jjxmptQGGeiyVqAV7vZH_/view?usp=drive_link" target="_blank">Gabarito</a></li>
-            </ul>
-        </div>
-        <div>
-            <h4>2024 – 1º Semestre</h4>
-            <ul>
-                <li><a href="https://drive.google.com/file/d/1w8xBzbedTFyouTETZArn5T7QRLoBtL4f/view?usp=drive_link" target="_blank">Prova</a></li>
-                <li><a href="https://drive.google.com/file/d/1IVzsnvbGzdHdXdr1Gs9X0g9dHsF_O3Cq/view?usp=drive_link" target="_blank">Gabarito</a></li>
-            </ul>
-        </div>
+  <div class="container">
+    <header class="header">
+      <img src="https://skued.com.br/wp-content/uploads/2024/09/skued-02.png" alt="skued Logo" class="logo">
+      <h1>Skued - Repositório de provas • Univassouras</h1>
+    </header>
 
-        <!-- 2023 -->
-        <div>
-            <h4>2023 – 2º Semestre</h4>
-            <ul>
-                <li><a href="https://drive.google.com/file/d/1V6Icv3J5q9k536ICsnmw0w2YuEiOcWHz/view?usp=drive_link" target="_blank">Prova</a></li>
-                <li><a href="https://drive.google.com/file/d/1fWXtjCGf-Qn4q9pgL_pUJypSYcrvrL0G/view?usp=drive_link" target="_blank">Gabarito</a></li>
-            </ul>
-        </div>
-        <div>
-            <h4>2023 – 1º Semestre</h4>
-            <ul>
-                <li><a href="https://drive.google.com/file/d/1d7vb1S8cJwSYefjMputGvjH3bivOW1TW/view?usp=drive_link" target="_blank">Prova</a></li>
-                <li><a href="https://drive.google.com/file/d/1Dt-_px_BA9mRCvi-b1aPVAJbqXQVthIa/view?usp=drive_link" target="_blank">Gabarito</a></li>
-            </ul>
-        </div>
+    <!-- ========= 2025 ========= -->
+    <section class="year"><h2>2025</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>1º Semestre</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1Y_K7AhksKDbuiB94fcCVl1FOfyP7AZ95/view?usp=drive_link" target="_blank">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1exu6q6cySZVPyG-tJsp2VlVubMZwiW9D/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-        <!-- 2022 -->
-        <div>
-            <h4>2022 – 2º Semestre</h4>
-            <ul>
-                <li><a href="https://drive.google.com/file/d/1JVvzIypfwnob8YafMqRgNW9tiBbS3UR2/view?usp=drive_link" target="_blank">Prova</a></li>
-                <li><a href="https://drive.google.com/file/d/1898sJGSMNEU7AYpGZcunmO7FFVi7-41G/view?usp=drive_link" target="_blank">Gabarito</a></li>
-            </ul>
-        </div>
-        <div>
-            <h4>2022 – 1º Semestre</h4>
-            <ul>
-                <li><a href="https://drive.google.com/file/d/1gczr9aLxVaHDQT5pmhrpGHNDxC17ul1q/view?usp=drive_link" target="_blank">Prova</a></li>
-                <li><a href="https://drive.google.com/file/d/1TCgBguzCIg6TdLjUjIIFYfOF7ZxcLTZG/view?usp=drive_link" target="_blank">Gabarito</a></li>
-            </ul>
-        </div>
+    <!-- ========= 2024 ========= -->
+    <section class="year"><h2>2024</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>2º Semestre</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1f1LQSMDpqQgR35-z0hV-_05P7dg0sYIh/view?usp=drive_link" target="_blank">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/178Wx4Ov3Zd5jjxmptQGGeiyVqAV7vZH_/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+          <h3>1º Semestre</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1w8xBzbedTFyouTETZArn5T7QRLoBtL4f/view?usp=drive_link" target="_blank">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1IVzsnvbGzdHdXdr1Gs9X0g9dHsF_O3Cq/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-        <!-- 2021 -->
-        <div>
-            <h4>2021 – 2º Semestre</h4>
-            <ul>
-                <li><a href="https://drive.google.com/file/d/1_kjBOZyddyf4-5I4RLNt_cJPtad1YvVt/view?usp=drive_link" target="_blank">Prova</a></li>
-                <li><a href="https://drive.google.com/file/d/1J-ao6RY3Ka9WeWp70B_Vi-RsKZDGlOPQ/view?usp=drive_link" target="_blank">Gabarito</a></li>
-            </ul>
-        </div>
-        <div>
-            <h4>2021 – 1º Semestre</h4>
-            <ul>
-                <li><a href="https://drive.google.com/file/d/114chIz1HmvUi2Gu0nhkiiS1bTc3UE2aE/view?usp=drive_link" target="_blank">Prova</a></li>
-                <li><a href="https://drive.google.com/file/d/1EXKPldTEEtbJhY9gqnY-rUK0cL36UT_D/view?usp=drive_link" target="_blank">Gabarito</a></li>
-            </ul>
-        </div>
+    <!-- ========= 2023 ========= -->
+    <section class="year"><h2>2023</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>2º Semestre</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1V6Icv3J5q9k536ICsnmw0w2YuEiOcWHz/view?usp=drive_link" target="_blank">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1fWXtjCGf-Qn4q9pgL_pUJypSYcrvrL0G/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+          <h3>1º Semestre</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1d7vb1S8cJwSYefjMputGvjH3bivOW1TW/view?usp=drive_link" target="_blank">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1Dt-_px_BA9mRCvi-b1aPVAJbqXQVthIa/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-        <!-- 2020 -->
-        <div>
-            <h4>2020 – 1º Semestre (2º Edital)</h4>
-            <ul>
-                <li><a href="https://drive.google.com/file/d/1mwFQPjIaK3UqHtS21XygiX1thxvhpom1/view?usp=drive_link" target="_blank">Prova</a></li>
-                <li><a href="https://drive.google.com/file/d/1BbVXGkjxz1eRm8mB2_Kianc5n6W-FcAx/view?usp=drive_link" target="_blank">Gabarito</a></li>
-            </ul>
-        </div>
-        <div>
-            <h4>2020 – 1º Semestre (1º Edital)</h4>
-            <ul>
-                <li><a href="https://drive.google.com/file/d/1B20jVPNDUVbnZWrATsoW3AO5PaLoHqV9/view?usp=drive_link" target="_blank">Prova</a></li>
-                <li><a href="https://drive.google.com/file/d/1JjL-Oo_OWvwntdcntpkwhPnjZedaE7md/view?usp=drive_link" target="_blank">Gabarito</a></li>
-            </ul>
-        </div>
+    <!-- ========= 2022 ========= -->
+    <section class="year"><h2>2022</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>2º Semestre</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1JVvzIypfwnob8YafMqRgNW9tiBbS3UR2/view?usp=drive_link" target="_blank">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1898sJGSMNEU7AYpGZcunmO7FFVi7-41G/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+          <h3>1º Semestre</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1gczr9aLxVaHDQT5pmhrpGHNDxC17ul1q/view?usp=drive_link" target="_blank">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1TCgBguzCIg6TdLjUjIIFYfOF7ZxcLTZG/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-        <!-- 2019 -->
-        <div>
-            <h4>2019 – 1º Semestre</h4>
-            <ul>
-                <li><a href="https://drive.google.com/file/d/1VdCFoDBqBJB5gtK3FbbxMmn_xsvJ8fFY/view?usp=drive_link" target="_blank">Prova</a></li>
-                <li><a href="https://drive.google.com/file/d/1StoroWMxOw5EHk1-05BVkYh1c481pAGB/view?usp=drive_link" target="_blank">Gabarito</a></li>
-            </ul>
-        </div>
+    <!-- ========= 2021 ========= -->
+    <section class="year"><h2>2021</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>2º Semestre</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1_kjBOZyddyf4-5I4RLNt_cJPtad1YvVt/view?usp=drive_link" target="_blank">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1J-ao6RY3Ka9WeWp70B_Vi-RsKZDGlOPQ/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+          <h3>1º Semestre</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/114chIz1HmvUi2Gu0nhkiiS1bTc3UE2aE/view?usp=drive_link" target="_blank">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1EXKPldTEEtbJhY9gqnY-rUK0cL36UT_D/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-        <!-- 2018 -->
-        <div>
-            <h4>2018 – 1º Semestre</h4>
-            <ul>
-                <li><a href="https://drive.google.com/file/d/1VRXxxIs7PmnkJ8yoxtOPb7Zps5dHxCfd/view?usp=drive_link" target="_blank">Prova</a></li
-                <li><a href="https://drive.google.com/file/d/1GFZqeaK13WTG22LkraV1uXk9QNwMKs6v/view?usp=drive_link" target="_blank">Gabarito</a></li>
-            </ul>
-        </div>
+    <!-- ========= 2020 ========= -->
+    <section class="year"><h2>2020</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>1º Semestre (2º Edital)</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1mwFQPjIaK3UqHtS21XygiX1thxvhpom1/view?usp=drive_link" target="_blank">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1BbVXGkjxz1eRm8mB2_Kianc5n6W-FcAx/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+          <h3>1º Semestre (1º Edital)</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1B20jVPNDUVbnZWrATsoW3AO5PaLoHqV9/view?usp=drive_link" target="_blank">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1JjL-Oo_OWvwntdcntpkwhPnjZedaE7md/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-        <!-- 2017 -->
-        <div>
-            <h4>2017 – 2º Semestre</h4>
-            <ul>
-                <li><a href="https://drive.google.com/file/d/1exuUVUtOxJWB_n9ETMWBYvOj4nEFnFzy/view?usp=drive_link" target="_blank">Prova</a></li>
-                <li><a href="https://drive.google.com/file/d/1ueHFAHizbrk2qbC0g-Q8V5zGTMJx-JXO/view?usp=drive_link" target="_blank">Gabarito</a></li>
-            </ul>
-        </div>
-        <div>
-            <h4>2017 – 1º Semestre</h4>
-            <ul>
-                <li><a href="https://drive.google.com/file/d/14u8LdXJllUI6UgJ86-cq24uRJ1G7xzAi/view?usp=drive_link" target="_blank">Prova</a></li>
-                <li><a href="https://drive.google.com/file/d/1UcSgbqnh_tExZZPMnuAwj5rc9uVh4Jjg/view?usp=drive_link" target="_blank">Gabarito</a></li>
-            </ul>
-        </div>
+    <!-- ========= 2019 ========= -->
+    <section class="year"><h2>2019</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>2º Semestre (2019.2)</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/10XJWr_r0ssOUuqWqe8eg-_2ndz2f08zd/view?usp=drive_link" target="_blank">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1BHs_EkaMw-k4ZXR7dEO0qxJM-r9SYarP/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+          <h3>1º Semestre (2019.1)</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1VdCFoDBqBJB5gtK3FbbxMmn_xsvJ8fFY/view?usp=drive_link" target="_blank">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1StoroWMxOw5EHk1-05BVkYh1c481pAGB/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
 
-        <!-- 2016 -->
-        <div>
-            <h4>2016 – 2º Semestre</h4>
-            <ul>
-                <li><a href="https://drive.google.com/file/d/11f9noVlDqoJz40EBIg_zn31BYrmyMH9d/view?usp=drive_link" target="_blank">Prova</a></li>
-                <li><a href="https://drive.google.com/file/d/1dESYbaKPLCupLRUnV1JojnqKfFWAQeWD/view?usp=drive_link" target="_blank">Gabarito</a></li>
-            </ul>
-        </div>
-        <div>
-            <h4>2016 – 1º Semestre</h4>
-            <ul>
-                <li><a href="https://drive.google.com/file/d/1eJ4amYI3LWD09e9peeTYw_ID5zXcCOnY/view?usp=drive_link" target="_blank">Prova</a></li>
-                <li><a href="https://drive.google.com/file/d/16aUh4U_EwQa6BUXyMNN0_FETsWW7Tv6i/view?usp=drive_link" target="_blank">Gabarito</a></li>
-            </ul>
-        </div>
+        <article class="card card--disc">
+          <h3>Exame Discursivo</h3>
+          <ul class="links">
+            <li>2019.2 — <a href="https://drive.google.com/file/d/14m0WzvS1Ipoejw9Dc3ecjhV6VmWGhxUN/view?usp=drive_link">Prova Discursiva</a> e padrões de resposta –
+              <a href="https://drive.google.com/file/d/1kpgkH8csYgyVFWBJ2cM1Ej_n2xBL3PgJ/view?usp=drive_link">Biologia</a> e
+              <a href="https://drive.google.com/file/d/14hpRUeUDEBfP-b6IAq46lqe5wWJiGlGw/view?usp=drive_link">Química</a></li>
+            <li>2019.1 — <a href="https://drive.google.com/file/d/1RA3Oq3temGfcWSdgNV8eYEQvG4Vc7eyG/view?usp=drive_link">Prova Discursiva</a> e padrões de resposta –
+              <a href="https://drive.google.com/file/d/1hv_su15YnaTY0aH5-chGEy59j_UT3m3G/view?usp=drive_link">Biologia</a> e
+              <a href="https://drive.google.com/file/d/1m4xAVnRMZcft76FocIR8nuVRF7kjkxV-/view?usp=drive_link">Química</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-        <!-- 2015 -->
-        <div>
-            <h4>2015 – 2º Semestre</h4>
-            <ul>
-                <li><a href="https://drive.google.com/file/d/1Yvv1okbBygdBvJbGTGiWye4b5W57lXVS/view?usp=drive_link" target="_blank">Prova</a></li>
-                <li><a href="https://drive.google.com/file/d/1n_npImVZu1k8q32Cr7dqEuOyoNhNnqeI/view?usp=drive_link" target="_blank">Gabarito</a></li>
-            </ul>
-        </div>
-        <div>
-            <h4>2015 – 1º Semestre</h4>
-            <ul>
-                <li><a href="https://drive.google.com/file/d/1dsyRBea-Suo7eyMM5JziJjgZOa69AG2K/view?usp=drive_link" target="_blank">Prova</a></li>
-                <li><a href="https://drive.google.com/file/d/1EQtfv-K8vW2ACBPOPWpBWSt82HFb5uPp/view?usp=drive_link" target="_blank">Gabarito</a></li>
-            </ul>
-        </div>
+    <!-- ========= 2018 ========= -->
+    <section class="year"><h2>2018</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>2º Semestre (2018.2)</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1XPjYTIa73brcKqtGoPG3Nf6fqxlMBuuN/view?usp=drive_link" target="_blank">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1BP7q-94fMZAcuqOAdhH5tL9D2LX2Sjvu/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+          <h3>1º Semestre (2018.1)</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1VRXxxIs7PmnkJ8yoxtOPb7Zps5dHxCfd/view?usp=drive_link" target="_blank">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1GFZqeaK13WTG22LkraV1uXk9QNwMKs6v/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
 
-        <!-- 2014 -->
-        <div>
-            <h4>2014 – 2º Semestre</h4>
-            <ul>
-                <li><a href="https://drive.google.com/file/d/1nhxzPliF6GtApCh6WnDsUVp2MuZevuUb/view?usp=drive_link" target="_blank">Prova</a></li>
-                <li><a href="https://drive.google.com/file/d/19wWfoux0N_YvfpZpN7dO2vAQnG883EUZ/view?usp=drive_link" target="_blank">Gabarito</a></li>
-            </ul>
-        </div>
-        <div>
-            <h4>2014 – 1º Semestre</h4>
-            <ul>
-                <li><a href="https://drive.google.com/file/d/1GSZT-7tzYhhX2BP9gVl_BSci8L777i_T/view?usp=drive_link" target="_blank">Prova</a></li>
-                <li><a href="https://drive.google.com/file/d/1Mj9Jfld571ysWNxJ--5pBSDjPW4uhYC1/view?usp=drive_link" target="_blank">Gabarito</a></li>
-            </ul>
-        </div>
+        <article class="card card--disc">
+          <h3>Exame Discursivo</h3>
+          <ul class="links">
+            <li>2018.2 — <a href="https://drive.google.com/file/d/1fz5r4CsQRi2bjMw3WlF0yZliqmvescYS/view?usp=drive_link">Prova Discursiva</a> e padrões de resposta –
+              <a href="https://drive.google.com/file/d/1IoYy56kEG7aMHKE-CuZW1zxh1NYgFLWB/view?usp=drive_link">Biologia</a> e
+              <a href="https://drive.google.com/file/d/1pmkmzib8umDGl7CbG7QxDt_hhSknUhd2/view?usp=drive_link">Química</a></li>
+            <li>2018.1 — <a href="https://drive.google.com/file/d/186xQX85w-PSooK1RGWWJRF5rGSO7ampc/view?usp=drive_link">Prova Discursiva</a> e padrões de resposta –
+              <a href="https://drive.google.com/file/d/1jl8WR8DdQyIeuuX0LMnY92p1YlcOsyI7/view?usp=drive_link">Biologia</a> e
+              <a href="https://drive.google.com/file/d/1qam3NLAEkLfvcY2S8WcT1uyYpIZsJren/view?usp=drive_link">Química</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
 
-        <!-- 2013 -->
-        <div>
-            <h4>2013 – 1º Semestre</h4>
-            <ul>
-                <li><a href="https://drive.google.com/file/d/14OrLUZcdMVk97oWTk-k-NGUtF41PDQ2G/view?usp=drive_link" target="_blank">Prova</a></li>
-                <li><a href="https://drive.google.com/file/d/1cLuaDSsvBRnw9s5kFiyqYRmDsNSvryvB/view?usp=drive_link" target="_blank">Gabarito</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="monitoria">
-        <p>Tire suas dúvidas na Monitoria [e-sk]!<br>
-        Agende o seu atendimento! 🐶<br>
-        <a href="https://www.padlet.com/skued/monitoria" class="monitoria-link">www.padlet.com/skued/monitoria</a></p>
-    </div>
+    <!-- ========= 2017 ========= -->
+    <section class="year"><h2>2017</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>2º Semestre (2017.2)</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1exuUVUtOxJWB_n9ETMWBYvOj4nEFnFzy/view?usp=drive_link" target="_blank">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1ueHFAHizbrk2qbC0g-Q8V5zGTMJx-JXO/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+          <h3>1º Semestre (2017.1)</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/14u8LdXJllUI6UgJ86-cq24uRJ1G7xzAi/view?usp=drive_link" target="_blank">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1UcSgbqnh_tExZZPMnuAwj5rc9uVh4Jjg/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+
+        <article class="card card--disc">
+          <h3>Exame Discursivo</h3>
+          <ul class="links">
+            <li>2017.2 — <a href="https://drive.google.com/file/d/1JmRSXV_Fa9C5Ji79XpVWwFABeoKmRxRh/view?usp=drive_link">Prova Discursiva</a> e padrões de resposta –
+              <a href="https://drive.google.com/file/d/11lQJJa8BBAVgb9Uqn1SxvoGhNoqVGI_p/view?usp=drive_link">Biologia</a> e
+              <a href="https://drive.google.com/file/d/1oeveIPpYgcBVXvxIaPQ_N7y-uOMDZNXJ/view?usp=drive_link">Química</a></li>
+            <li>2017.1 — <a href="https://drive.google.com/file/d/1ccIoSAn5zg2c0QoA_HeHUaYqWXZ1oNzT/view?usp=drive_link">Prova Discursiva</a> e padrões de resposta –
+              <a href="https://drive.google.com/file/d/1FJ6bN2hvDPuqiJx5dbHgQf-Sd0zR1PDV/view?usp=drive_link">Biologia</a> e
+              <a href="https://drive.google.com/file/d/15agmp08gZAH2vKxfyd5cHBbelvYtTv0D/view?usp=drive_link">Química</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========= 2016 ========= -->
+    <section class="year"><h2>2016</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>2º Semestre (2016.2)</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/11f9noVlDqoJz40EBIg_zn31BYrmyMH9d/view?usp=drive_link" target="_blank">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1dESYbaKPLCupLRUnV1JojnqKfFWAQeWD/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+          <h3>1º Semestre (2016.1)</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1eJ4amYI3LWD09e9peeTYw_ID5zXcCOnY/view?usp=drive_link" target="_blank">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/16aUh4U_EwQa6BUXyMNN0_FETsWW7Tv6i/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+
+        <article class="card card--disc">
+          <h3>Exame Discursivo</h3>
+          <ul class="links">
+            <li>2016.2 — <a href="https://drive.google.com/file/d/1rcqnqnugfzT2IZOKxd9wHnuWKJQqCtar/view?usp=drive_link">Prova Discursiva</a> e padrões de resposta –
+              <a href="https://drive.google.com/file/d/18pcQkT-Tzs5jSCpH7NA5TRSVVQ0_-BwK/view?usp=drive_link">Biologia</a> e
+              <a href="https://drive.google.com/file/d/1S-VyIq5aIYChhk36maHOqNX78Ky_wo_Y/view?usp=drive_link">Química</a></li>
+            <li>2016.1 — <a href="https://drive.google.com/file/d/1ay0_gbsqdfPFOrqx2HL8aSMD6yaY_u1Q/view?usp=drive_link">Prova Discursiva</a> e padrões de resposta –
+              <a href="https://drive.google.com/file/d/1SpVuU2MDbzIEVVJSkCZDRPFuwRPxqPIG/view?usp=drive_link">Biologia</a> e
+              <a href="https://drive.google.com/file/d/1D_WIibsdlAvbw7bPzySb2WEmlgM-diwP/view?usp=drive_link">Química</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========= 2015 ========= -->
+    <section class="year"><h2>2015</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>2º Semestre (2015.2)</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1Yvv1okbBygdBvJbGTGiWye4b5W57lXVS/view?usp=drive_link" target="_blank">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1n_npImVZu1k8q32Cr7dqEuOyoNhNnqeI/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+          <h3>1º Semestre (2015.1)</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1dsyRBea-Suo7eyMM5JziJjgZOa69AG2K/view?usp=drive_link" target="_blank">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1EQtfv-K8vW2ACBPOPWpBWSt82HFb5uPp/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+
+        <article class="card card--disc">
+          <h3>Exame Discursivo</h3>
+          <ul class="links">
+            <li>2015.2 — <a href="https://drive.google.com/file/d/1MeCcyuyTXQrEMtEEBEDFq30cECNo-nfS/view?usp=drive_link">Prova Discursiva</a> e padrões de resposta –
+              <a href="https://drive.google.com/file/d/1RCUzs3bFyBCMibH9L8CNfbrtQGF33X3-/view?usp=drive_link">Biologia</a> e
+              <a href="https://drive.google.com/file/d/10svjHvRMm3ZT_Qen8gtA7qbHDOwKzkYQ/view?usp=drive_link">Química</a></li>
+            <li>2015.1 — <a href="https://drive.google.com/file/d/12YhWR3h4wmRLDWvcKp8KU0aQ1CxeZlL5/view?usp=drive_link">Prova Discursiva</a> e padrões de resposta –
+              <a href="https://drive.google.com/file/d/1ORmZEzTALsLHKQhkqrqMlX0XN9VqMxzX/view?usp=drive_link">Biologia</a> e
+              <a href="https://drive.google.com/file/d/1ascJPGMzqY-dyM-KZCUKo1kwRR07uOwu/view?usp=drive_link">Química</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========= 2014 ========= -->
+    <section class="year"><h2>2014</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>2º Semestre (2014.2)</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/16xIXPe6eMCgFpz5ecvU1NXJRu8pzz1y7/view?usp=drive_link" target="_blank">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/19wWfoux0N_YvfpZpN7dO2vAQnG883EUZ/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+          <h3>1º Semestre (2014.1)</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/16BhQMln-OvxspZw5GnRhDUX2-f0N2U0e/view?usp=drive_link" target="_blank">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1Mj9Jfld571ysWNxJ--5pBSDjPW4uhYC1/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+
+        <article class="card card--disc">
+          <h3>Exame Discursivo</h3>
+          <ul class="links">
+            <li>2014.2 — <a href="https://drive.google.com/file/d/16xIXPe6eMCgFpz5ecvU1NXJRu8pzz1y7/view?usp=drive_link">Prova Discursiva</a> e padrões de resposta –
+              <a href="https://drive.google.com/file/d/1fg13Jn2erx-JYU8swJobE0DN6eKApYPh/view?usp=drive_link">Biologia</a> e
+              <a href="https://drive.google.com/file/d/1mxXDzV2OiaxJ8cTSazfOl6oJmFCBncrY/view?usp=drive_link">Química</a></li>
+            <li>2014.1 — <a href="https://drive.google.com/file/d/16BhQMln-OvxspZw5GnRhDUX2-f0N2U0e/view?usp=drive_link">Prova Discursiva</a> e padrões de resposta –
+              <a href="https://drive.google.com/file/d/1NpCT0sYg94288y98XWRjraJ5wYCf4m5n/view?usp=drive_link">Biologia</a> e
+              <a href="https://drive.google.com/file/d/187xQQiOUBC0rfVfEdgVh7ltwLQXnW-xN/view?usp=drive_link">Química</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========= 2013 ========= -->
+    <section class="year"><h2>2013</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>1º Semestre (2013.1)</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/14OrLUZcdMVk97oWTk-k-NGUtF41PDQ2G/view?usp=drive_link" target="_blank">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1cLuaDSsvBRnw9s5kFiyqYRmDsNSvryvB/view?usp=drive_link" target="_blank">Gabarito</a></li>
+          </ul>
+        </article>
+
+        <article class="card card--disc">
+          <h3>Exame Discursivo</h3>
+          <ul class="links">
+            <li>2013.1 — <a href="https://drive.google.com/file/d/1YXUI5w4iPiOTUf7UYZz51td9hlGWFztd/view?usp=drive_link">Prova Discursiva</a> e padrões de resposta –
+              <a href="https://drive.google.com/file/d/1B8N7rjwpPtfbWlChNl-cCOoEmlrLwIkn/view?usp=drive_link">Biologia</a> e
+              <a href="https://drive.google.com/file/d/195vdIWxGCryznpJPh8tadM6zFnSWXxmp/view?usp=drive_link">Química</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <footer class="monitoria">
+      <p><span class="highlight">Tire suas dúvidas na</span> <span class="muted">Monitoria [e-sk]</span>!<br>
+      Agende o seu atendimento! 🐶<br>
+      <a href="https://www.padlet.com/skued/monitoria" class="monitoria-link">www.padlet.com/skued/monitoria</a></p>
+    </footer>
+  </div>
 </body>
-
 </html>

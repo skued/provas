@@ -1,283 +1,356 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skued - Repositório de provas UERJ</title>
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Exo 2', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skued - Repositório de provas UERJ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #f6f7fb;
+      --surface: #fff;
+      --text: #1f2937;
+      --line: #e5e7eb;
+      --brand-2: #0e1726;
+      --disc-bg: #fdf6fa;      /* fundo sutil rosado */
+      --disc-bar: #ff0077;     /* rosa da marca na borda */
+      --radius: 14px;
+      --shadow: 0 8px 24px rgba(0,0,0,0.06);
+      --link: #0b1736;         /* azul marinho da logo */
+      --link-hover: #ff0077;   /* rosa da marca */
+    }
+    *{box-sizing:border-box}
+    body{
+      font-family:'Exo 2',sans-serif;
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    .container{ max-width: 1000px; margin: 28px auto; padding: 0 20px 28px; }
+    .header{ display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px; margin-bottom: 18px; }
+    .logo{ width:140px; height:auto; display:block; }
+    h1{ margin:0; font-weight:700; font-size: clamp(22px, 3vw, 32px); text-align:center; color: var(--brand-2); }
 
-        .container {
-            max-width: 960px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #ffffff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            border-radius: 8px;
-            text-align: left; /* Align text to the left */
-        }
+    .year{ margin-top: 28px; border-top: 1px solid var(--line); padding-top: 22px; }
+    .year > h2{ margin:0 0 16px; font-size: clamp(18px, 2.3vw, 24px); font-weight:700; color: var(--brand-2); }
 
-        .logo {
-            max-width: 150px;
-            display: block;
-            margin: 10px auto;
-        }
+    .columns{ display: grid; gap: 16px; }
+    @media (min-width: 860px){
+      .columns{ grid-template-columns: 1fr; }
+      .columns:has(.card + .card){ grid-template-columns: 1fr 1fr; align-items: stretch; }
+    }
 
-        h1 {
-            text-align: center; /* Center the title */
-            font-weight: 700;
-            font-size: 2.5em;
-            color: #333;
-            margin-top: 0;
-            margin-bottom: 20px;
-        }
+    .card{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px 16px 14px;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      min-height: 100%;
+    }
+    .card h3{ margin:0; font-size: clamp(16px, 2vw, 20px); color: var(--text); }
+    .links{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px; }
+    .links li{ line-height:1.5; }
 
-        h2, h3 {
-            text-align: left; /* Headers aligned to the left */
-        }
+    a{ color: var(--link); text-decoration:none; font-weight:600; transition: color .2s ease; }
+    a:hover, a:focus{ color: var(--link-hover); text-decoration: underline; outline: none; }
+    a:focus-visible{ outline: 2px solid var(--link-hover); outline-offset: 2px; }
 
-        h2 {
-            font-size: 2.0em;
-            color: #555;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
+    .card--disc{ background: var(--disc-bg); border-left: 6px solid var(--disc-bar); }
 
-        h3 {
-            font-size: 1.5em;
-            color: #666;
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-
-        h4 {
-            font-size: 2.0em;
-            color: #333;
-            margin-top: 10px;
-            margin-bottom: 20px;
-        }
-
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            margin-bottom: 5px;
-        }
-
-        a {
-            color: #007bff;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .monitoria {
-            background-color: #08093b;
-            color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .monitoria-link {
-            color: #ff0077; /* pink */
-            text-decoration: none;
-        }
-
-        .monitoria-link:hover {
-            text-decoration: underline;
-        }
-    </style>
+    .highlight { color: #ff0077; font-weight: 700; }
+    .muted{ color: rgba(255,255,255,0.7); }
+    .monitoria{
+      margin-top: 28px; background-color:#08093b; color:#fff; border-radius: var(--radius);
+      padding: 18px; text-align:center; box-shadow: var(--shadow);
+    }
+    .monitoria a{ color:#ff0077; font-weight:700; }
+  </style>
 </head>
-
 <body>
-    <div class="container">
-        <img src="https://skued.com.br/wp-content/uploads/2024/09/skued-02.png" alt="skued Logo" class="logo">
-        <h1>Skued - Repositório de provas - UERJ</h1>
-        <div>
-            <h4>2025</h4>
-            <div>
-                <h3>2º Exame de Qualificação</h3>
-                <ul>
-                    <li><a href="https://drive.google.com/file/d/1D87z8EG9q0hl50aauVBqt010upHTuQv1/view?usp=drive_link" target="_blank">Prova</a></li>
-                    <li><a href="https://drive.google.com/file/d/1FfAx_FF1yKhdyjxYfYt7FcurvaW0Pc6C/view?usp=drive_link" target="_blank">Gabarito</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3>1º Exame de Qualificação</h3>
-                <ul>
-                    <li><a href="https://drive.google.com/file/d/1RCtTPgu3MzkIoaLuzf_oeV77zOEXV3xb/view?usp=sharing" target="_blank">Prova</a></li>
-                    <li><a href="https://drive.google.com/file/d/1oRM9xY27AasKF3rbbdPMhYA21_jKqouS/view?usp=sharing" target="_blank">Gabarito</a></li>
-                </ul>
-            </div>
-            <h4>2024</h4>
-            <div>
-                <h3>2º Exame de Qualificação</h3>
-                <ul>
-                    <li><a href="https://drive.google.com/file/d/1M1SYexCbkPLTph05YLDfiWR2hbonjyS4/view?usp=sharing" target="_blank">Prova</a></li>
-                    <li><a href="https://drive.google.com/file/d/1EibYhh5QT979kW5znZrE71xf3fcZatfd/view?usp=sharing" target="_blank">Gabarito</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3>1º Exame de Qualificação</h3>
-                <ul>
-                    <li><a href="https://drive.google.com/file/d/1ZYk38Y1BaacX5WSgMddDLWR_FnVd59Bk/view?usp=sharing" target="_blank">Prova</a></li>
-                    <li><a href="https://drive.google.com/file/d/1Z-o7L8pSlSIx3LhWggyS9vM6D6WB4Go3/view?usp=sharing" target="_blank">Gabarito</a></li>
-                </ul>
-            </div>
-        </div>
-        <div>
-            <h4>2023</h4>
-            <div>
-                <h3>Exame Único</h3>
-                <ul>
-                    <li><a href="https://drive.google.com/file/d/1xDIKDVWJ4kcujuGlCpS12iUJiVSLg0V4/view?usp=sharing" target="_blank">Prova</a></li>
-                    <li><a href="https://drive.google.com/file/d/1qX6VoViV-R58vhJrJJQA8CmeytayziCD/view?usp=sharing" target="_blank">Gabarito</a></li>
-                </ul>
-            </div>
-        </div>
-        <div>
-            <h4>2022</h4>
-            <div>
-                <h3>Exame Único</h3>
-                <ul>
-                    <li><a href="https://drive.google.com/file/d/1KEXCTKKeO_GaLgB7Ut2A7QErWTMbdGh7/view?usp=sharing" target="_blank">Prova</a></li>
-                    <li><a href="https://drive.google.com/file/d/1DT-hNRvBRR6C_Y7QfJuO0imPLVRHvwEp/view?usp=sharing" target="_blank">Gabarito</a></li>
-                </ul>
-            </div>
-        </div>
-        <div>
-            <h4>2021</h4>
-            <div>
-                <h3>Exame Único</h3>
-                <ul>
-                    <li><a href="https://drive.google.com/file/d/1J4hEwOvI1oGW0iuxjYBag7A25rGUrgSv/view?usp=sharing" target="_blank">Prova</a></li>
-                    <li><a href="https://drive.google.com/file/d/11-mZKI9kPLKAjYdLC6RvL1kIUobXJ7bs/view?usp=sharing" target="_blank">Gabarito</a></li>
-                </ul>
-            </div>
-        </div>
-        <div>
-            <h4>2020</h4>
-            <div>
-                <h3>2º Exame de Qualificação</h3>
-                <ul>
-                    <li><a href="https://drive.google.com/file/d/15LkzAThlCvS4Rms0e6IKRRI6QcUlsG1t/view?usp=sharing" target="_blank">Prova</a></li>
-                    <li><a href="https://drive.google.com/file/d/1aI9_cDSZF8tf0cancFFhbCKpJwE6B5Dv/view?usp=sharing" target="_blank">Gabarito</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3>1º Exame de Qualificação</h3>
-                <ul>
-                    <li><a href="https://drive.google.com/file/d/1-EAcUnKXPdAJk4fsGMCFVAa3UJHywVR_/view?usp=sharing" target="_blank">Prova</a></li>
-                    <li><a href="https://drive.google.com/file/d/1vkPBYqfZ5mnLMhwzl2u4dvqpvaMmkh_a/view?usp=sharing" target="_blank">Gabarito</a></li>
-                </ul>
-            </div>
-        </div>
-        <div>
-            <h4>2019</h4>
-            <div>
-                <h3>2º Exame de Qualificação</h3>
-                <ul>
-                    <li><a href="https://drive.google.com/file/d/1mYDnZWK_lEUvZYXycZGBVe_TwRlDJwEK/view?usp=sharing" target="_blank">Prova</a></li>
-                    <li><a href="https://drive.google.com/file/d/16X9OUlCp6vb0Vmxl407HQ6YkhbWh9ZQz/view?usp=sharing" target="_blank">Gabarito</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3>1º Exame de Qualificação</h3>
-                <ul>
-                    <li><a href="https://drive.google.com/file/d/19WIoXuMxMjMU-YNxGVe0Dc5iX5fWd4GW/view?usp=sharing" target="_blank">Prova</a></li>
-                    <li><a href="https://drive.google.com/file/d/1aQWtn_h6xjmLoUis2d2ZS4pKkUeiwjVQ/view?usp=sharing" target="_blank">Gabarito</a></li>
-                </ul>
-            </div>
-        </div>
-        <div>
-            <h4>2018</h4>
-            <div>
-                <h3>2º Exame de Qualificação</h3>
-                <ul>
-                    <li><a href="https://drive.google.com/file/d/13IpoOAJSrK9tZBAJSlmQYqC2-mZcuJh0/view?usp=sharing" target="_blank">Prova</a></li>
-                    <li><a href="https://drive.google.com/file/d/1pB67gAm1r2IMqhynPT4KI7HKzJKO0P37/view?usp=sharing" target="_blank">Gabarito</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3>1º Exame de Qualificação</h3>
-                <ul>
-                    <li><a href="https://drive.google.com/file/d/1yvXtvfUieH3Zty6MaGVAZhmUCFCGPwFX/view?usp=sharing" target="_blank">Prova</a></li>
-                    <li><a href="https://drive.google.com/file/d/13jZQQpavWM1WX8ykN_7Eb4Cht8XNzh7_/view?usp=sharing" target="_blank">Gabarito</a></li>
-                </ul>
-            </div>
-        </div>
-        <div>
-            <h4>2017</h4>
-            <div>
-                <h3>2º Exame de Qualificação</h3>
-                <ul>
-                    <li><a href="https://drive.google.com/file/d/1AjXHJSG3wAW5Iruzg0go4ibGM8AJmTAT/view?usp=sharing" target="_blank">Prova</a></li>
-                    <li><a href="https://drive.google.com/file/d/1bV5xUkSEiSLPMgUVeMueL2EH6zLgayb-/view?usp=sharing" target="_blank">Gabarito</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3>1º Exame de Qualificação</h3>
-                <ul>
-                    <li><a href="https://drive.google.com/file/d/1wtjF3eqHMO8Vd3a2xCAnEnuGgxrtn-xJ/view?usp=sharing" target="_blank">Prova</a></li>
-                    <li><a href="https://drive.google.com/file/d/1ienTeeroTFnvHPwwFinEvOgYVxmTQq1w/view?usp=sharing" target="_blank">Gabarito</a></li>
-                </ul>
-            </div>
-        </div>
-        <div>
-            <h4>2016</h4>
-            <div>
-                <h3>2º Exame de Qualificação</h3>
-                <ul>
-                    <li><a href="https://drive.google.com/file/d/1RZiVMSpGgqkul7HOw2xfner71yVRPKFp/view?usp=sharing" target="_blank">Prova</a></li>
-                    <li><a href="https://drive.google.com/file/d/1F54oCSrr8M89JzQEF-0uIiWIkL_IIadZ/view?usp=sharing" target="_blank">Gabarito</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3>1º Exame de Qualificação</h3>
-                <ul>
-                    <li><a href="https://drive.google.com/file/d/1uyB2Be3fG9DIFunbqbiPY8TQBcKgYnUa/view?usp=sharing" target="_blank">Prova</a></li>
-                    <li><a href="https://drive.google.com/file/d/1YLLuEh2D7CLoyg3Fzz8ddCn9nNAkTp7S/view?usp=sharing" target="_blank">Gabarito</a></li>
-                </ul>
-            </div>
-        </div>
-        <div>
-            <h4>2015</h4>
-            <div>
-                <h3>2º Exame de Qualificação</h3>
-                <ul>
-                    <li><a href="https://drive.google.com/file/d/1aG5_UMlS3a14qB6T_68FyK6_0KBBRTNj/view?usp=sharing" target="_blank">Prova</a></li>
-                    <li><a href="https://drive.google.com/file/d/1gSTGbnVGbUHg-wTSfLyZnmpQNkC6hvzH/view?usp=sharing" target="_blank">Gabarito</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3>1º Exame de Qualificação</h3>
-                <ul>
-                    <li><a href="https://drive.google.com/file/d/1xiXk3rbeJLhXVXQErioi6S5NKm2RRw9O/view?usp=sharing" target="_blank">Prova</a></li>
-                    <li><a href="https://drive.google.com/file/d/1rSHCTjJCH1CP2BON7qxH6MB2ppJRzqPp/view?usp=sharing" target="_blank">Gabarito</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="monitoria">
-        <p>Tire suas dúvidas na Monitoria [e-sk]!<br>
-        Agende o seu atendimento! 🐶<br>
-        <a href="https://www.padlet.com/skued/monitoria" class="monitoria-link">www.padlet.com/skued/monitoria</a></p>
-    </div>
-</body>
+  <div class="container">
+    <header class="header">
+      <img src="https://skued.com.br/wp-content/uploads/2024/09/skued-02.png" alt="Logo Skued" class="logo" />
+      <h1>Skued – Repositório de Provas • UERJ</h1>
+    </header>
 
+    <!-- ================= 2025 ================= -->
+    <section class="year" aria-labelledby="y2025">
+      <h2 id="y2025">2025</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>2º Exame de Qualificação</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1D87z8EG9q0hl50aauVBqt010upHTuQv1/view?usp=drive_link" target="_blank" title="Prova – 2º EQ 2025">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1FfAx_FF1yKhdyjxYfYt7FcurvaW0Pc6C/view?usp=drive_link" target="_blank" title="Gabarito – 2º EQ 2025">Gabarito</a></li>
+          </ul>
+          <h3>1º Exame de Qualificação</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1RCtTPgu3MzkIoaLuzf_oeV77zOEXV3xb/view?usp=sharing" target="_blank" title="Prova – 1º EQ 2025">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1oRM9xY27AasKF3rbbdPMhYA21_jKqouS/view?usp=sharing" target="_blank" title="Gabarito – 1º EQ 2025">Gabarito</a></li>
+          </ul>
+        </article>
+        <article class="card card--disc" aria-label="Exame Discursivo 2025">
+          <h3>Exame Discursivo</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1vUtCMlDDXgxFr_8BT0eMmUE02AdimU4j/view?usp=drive_link" target="_blank">Prova de Biologia</a> e <a href="https://drive.google.com/file/d/1-QajqeJNkVazoeuCD7g3xmtQ-_RuQ4Q8/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+            <li><a href="https://drive.google.com/file/d/1VgYlJ2Gdr0zDxHu8gj66No8F_6LXqXQs/view?usp=drive_link" target="_blank">Prova de Química</a> e <a href="https://drive.google.com/file/d/1WO4awFfLGafciC8EJIJSpHXAsbjlpg8B/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+            <li><a href="https://drive.google.com/file/d/1qoLNXfLfSMoAzwBtyb8PdPpDeZKR-6Pd/view?usp=drive_link" target="_blank">Prova de História</a> e <a href="https://drive.google.com/file/d/1DL5HaapJf2IHRvfw_WXgkDpf09w9ScLb/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+            <li><a href="https://drive.google.com/file/d/1lmBFSfC_uMJXDpl385o3Jq1ydvqh3HLh/view?usp=drive_link" target="_blank">Prova de Língua Portuguesa</a> e <a href="https://drive.google.com/file/d/1a9QMtRPHSaypxZ79zVLjZEe4p5QxdMQ4/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 2024 ================= -->
+    <section class="year" aria-labelledby="y2024">
+      <h2 id="y2024">2024</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>2º Exame de Qualificação</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1M1SYexCbkPLTph05YLDfiWR2hbonjyS4/view?usp=sharing" target="_blank" title="Prova – 2º EQ 2024">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1EibYhh5QT979kW5znZrE71xf3fcZatfd/view?usp=sharing" target="_blank" title="Gabarito – 2º EQ 2024">Gabarito</a></li>
+          </ul>
+          <h3>1º Exame de Qualificação</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1ZYk38Y1BaacX5WSgMddDLWR_FnVd59Bk/view?usp=sharing" target="_blank" title="Prova – 1º EQ 2024">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1Z-o7L8pSlSIx3LhWggyS9vM6D6WB4Go3/view?usp=sharing" target="_blank" title="Gabarito – 1º EQ 2024">Gabarito</a></li>
+          </ul>
+        </article>
+        <article class="card card--disc" aria-label="Exame Discursivo 2024">
+          <h3>Exame Discursivo</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1PYN8Rt6F2QV_C2wPe70TI0FgEuFQSoZk/view?usp=drive_link" target="_blank">Prova de Biologia</a> e <a href="https://drive.google.com/file/d/1-jgYZc8imye3TcVQTZYrCqtYT-GWSfnF/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+            <li><a href="https://drive.google.com/file/d/1QPeTp5T5I6qPI46vrpOgckRQ6HMMu66p/view?usp=drive_link" target="_blank">Prova de Química</a> e <a href="https://drive.google.com/file/d/1zm3CYy9zYrArJtU2w7aQvHBQLlXczNVf/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+            <li><a href="https://drive.google.com/file/d/1bWiRJ7atNjkwsIRUhkg8YV602G8cG6xH/view?usp=drive_link" target="_blank">Prova de História</a> e <a href="https://drive.google.com/file/d/1wO-hFIBUmjMN5bYvj6OsUHz4K4IRUtI5/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+            <li><a href="https://drive.google.com/file/d/1YwW3ml3cmvmEtGLQ7IM3MEKJZ7Kxb-ot/view?usp=drive_link" target="_blank">Prova de Língua Portuguesa</a> e <a href="https://drive.google.com/file/d/1LhMIpHVxJEIi5v-E7rqw_7zKjznH1s6-/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 2023 ================= -->
+    <section class="year" aria-labelledby="y2023">
+      <h2 id="y2023">2023</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>Exame Único</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1xDIKDVWJ4kcujuGlCpS12iUJiVSLg0V4/view?usp=sharing" target="_blank" title="Prova – Exame Único 2023">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1qX6VoViV-R58vhJrJJQA8CmeytayziCD/view?usp=sharing" target="_blank" title="Gabarito – Exame Único 2023">Gabarito</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 2022 ================= -->
+    <section class="year" aria-labelledby="y2022">
+      <h2 id="y2022">2022</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>Exame Único</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1KEXCTKKeO_GaLgB7Ut2A7QErWTMbdGh7/view?usp=sharing" target="_blank" title="Prova – Exame Único 2022">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1DT-hNRvBRR6C_Y7QfJuO0imPLVRHvwEp/view?usp=sharing" target="_blank" title="Gabarito – Exame Único 2022">Gabarito</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 2021 ================= -->
+    <section class="year" aria-labelledby="y2021">
+      <h2 id="y2021">2021</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>Exame Único</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1J4hEwOvI1oGW0iuxjYBag7A25rGUrgSv/view?usp=sharing" target="_blank" title="Prova – Exame Único 2021">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/11-mZKI9kPLKAjYdLC6RvL1kIUobXJ7bs/view?usp=sharing" target="_blank" title="Gabarito – Exame Único 2021">Gabarito</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 2020 ================= -->
+    <section class="year" aria-labelledby="y2020">
+      <h2 id="y2020">2020</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>2º Exame de Qualificação</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/15LkzAThlCvS4Rms0e6IKRRI6QcUlsG1t/view?usp=sharing" target="_blank" title="Prova – 2º EQ 2020">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1aI9_cDSZF8tf0cancFFhbCKpJwE6B5Dv/view?usp=sharing" target="_blank" title="Gabarito – 2º EQ 2020">Gabarito</a></li>
+          </ul>
+          <h3>1º Exame de Qualificação</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1-EAcUnKXPdAJk4fsGMCFVAa3UJHywVR_/view?usp=sharing" target="_blank" title="Prova – 1º EQ 2020">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1vkPBYqfZ5mnLMhwzl2u4dvqpvaMmkh_a/view?usp=sharing" target="_blank" title="Gabarito – 1º EQ 2020">Gabarito</a></li>
+          </ul>
+        </article>
+        <article class="card card--disc" aria-label="Exame Discursivo 2020">
+          <h3>Exame Discursivo</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1nJ23CVFZJnvpkVWtECv4tyorf_VhJ0dB/view?usp=drive_link" target="_blank">Prova de Biologia</a> e <a href="https://drive.google.com/file/d/17zSyPFYRCQQ5VuIbMMWzUV1ODH11dVHC/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+            <li><a href="https://drive.google.com/file/d/1tJKiwC2TA78BRuHWJvgM7I_wK7gyg86G/view?usp=drive_link" target="_blank">Prova de Química</a> e <a href="https://drive.google.com/file/d/1UrY8FuP3I3R7IUsvZBpKzEezBI145qlW/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+            <li><a href="https://drive.google.com/file/d/1zzE4lYhncmdl_dH-UgB_Y6KlBTwuaDSr/view?usp=drive_link" target="_blank">Prova de História</a> e <a href="https://drive.google.com/file/d/17QSOl1veDg7HExFZWlbt3CAl5EHVUcKK/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+            <li><a href="https://drive.google.com/file/d/1lk5bQoYgDWOuKGAyHkP8En_CIV21w62m/view?usp=drive_link" target="_blank">Prova de Língua Portuguesa</a> e <a href="https://drive.google.com/file/d/12JcO3TTtwuohYVrqzf2CANmpWEUslrkO/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 2019 ================= -->
+    <section class="year" aria-labelledby="y2019">
+      <h2 id="y2019">2019</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>2º Exame de Qualificação</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1mYDnZWK_lEUvZYXycZGBVe_TwRlDJwEK/view?usp=sharing" target="_blank" title="Prova – 2º EQ 2019">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/16X9OUlCp6vb0Vmxl407HQ6YkhbWh9ZQz/view?usp=sharing" target="_blank" title="Gabarito – 2º EQ 2019">Gabarito</a></li>
+          </ul>
+          <h3>1º Exame de Qualificação</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/19WIoXuMxMjMU-YNxGVe0Dc5iX5fWd4GW/view?usp=sharing" target="_blank" title="Prova – 1º EQ 2019">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1aQWtn_h6xjmLoUis2d2ZS4pKkUeiwjVQ/view?usp=sharing" target="_blank" title="Gabarito – 1º EQ 2019">Gabarito</a></li>
+          </ul>
+        </article>
+        <article class="card card--disc" aria-label="Exame Discursivo 2019">
+          <h3>Exame Discursivo</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1aUOQeBo5z63lqSgzjIwOptfj7HZ4ETC0/view?usp=drive_link" target="_blank">Prova de Biologia</a> e <a href="https://drive.google.com/file/d/1Gw_q1XIr0Jw6igk3ZK7VYM3DgXSGeI2E/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+            <li><a href="https://drive.google.com/file/d/1iJWFadx5LPjADAMigbrYG9wGo71pcO3C/view?usp=drive_link" target="_blank">Prova de Química</a> e <a href="https://drive.google.com/file/d/1JbXKbA8DvWHh7CvRKVyTMWGf3GWNDi0Z/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+            <li><a href="https://drive.google.com/file/d/1IQZFsvL2rFVsyprud_ScANKNQxA_1gVh/view?usp=drive_link" target="_blank">Prova de História</a> e <a href="https://drive.google.com/file/d/1GUA4cD7c8HyfHiQoVyvYFygDsmrm8crr/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+            <li><a href="https://drive.google.com/file/d/1IPvjJCWhJFBEKOYVsFA_kG_DI3G76Cd0/view?usp=drive_link" target="_blank">Prova de Língua Portuguesa</a> e <a href="https://drive.google.com/file/d/1DceLmlOE9LEfvGEJ6Hb08aeQauiwixUO/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 2018 ================= -->
+    <section class="year" aria-labelledby="y2018">
+      <h2 id="y2018">2018</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>2º Exame de Qualificação</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/13IpoOAJSrK9tZBAJSlmQYqC2-mZcuJh0/view?usp=sharing" target="_blank" title="Prova – 2º EQ 2018">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1pB67gAm1r2IMqhynPT4KI7HKzJKO0P37/view?usp=sharing" target="_blank" title="Gabarito – 2º EQ 2018">Gabarito</a></li>
+          </ul>
+          <h3>1º Exame de Qualificação</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1yvXtvfUieH3Zty6MaGVAZhmUCFCGPwFX/view?usp=sharing" target="_blank" title="Prova – 1º EQ 2018">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/13jZQQpavWM1WX8ykN_7Eb4Cht8XNzh7_/view?usp=sharing" target="_blank" title="Gabarito – 1º EQ 2018">Gabarito</a></li>
+          </ul>
+        </article>
+        <article class="card card--disc" aria-label="Exame Discursivo 2018">
+          <h3>Exame Discursivo</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1nJCHQgT0XDIHbjs9b2FSRbD2_QBjPGhk/view?usp=drive_link" target="_blank">Prova de Biologia</a> e <a href="https://drive.google.com/file/d/1_GwUH0LKhZNaS_T_z7t4b-CKTuv728DV/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+            <li><a href="https://drive.google.com/file/d/1_ETnkiUn4KUAq4z-StjVKb-Os0JoXw4u/view?usp=drive_link" target="_blank">Prova de Química</a> e <a href="https://drive.google.com/file/d/136IwKQsYJfI05M0cxCq9vAN8hq9DUpgV/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+            <li><a href="https://drive.google.com/file/d/1Zs6GBi0fOG2n1OCUbk7akxrzXzviH6N0/view?usp=drive_link" target="_blank">Prova de História</a> e <a href="https://drive.google.com/file/d/17Nv5PanDZM92UXrgEOreII5_GcSLQiHb/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+            <li><a href="https://drive.google.com/file/d/1CyMhKi86S_F3hqGVO1C9g6fAQfKpPVAZ/view?usp=drive_link" target="_blank">Prova de Língua Portuguesa</a> e <a href="https://drive.google.com/file/d/1mW4kUTygCbblAZvcYoWF-q75p-NvkOqU/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 2017 ================= -->
+    <section class="year" aria-labelledby="y2017">
+      <h2 id="y2017">2017</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>2º Exame de Qualificação</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1AjXHJSG3wAW5Iruzg0go4ibGM8AJmTAT/view?usp=sharing" target="_blank" title="Prova – 2º EQ 2017">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1bV5xUkSEiSLPMgUVeMueL2EH6zLgayb-/view?usp=sharing" target="_blank" title="Gabarito – 2º EQ 2017">Gabarito</a></li>
+          </ul>
+          <h3>1º Exame de Qualificação</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1wtjF3eqHMO8Vd3a2xCAnEnuGgxrtn-xJ/view?usp=sharing" target="_blank" title="Prova – 1º EQ 2017">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1ienTeeroTFnvHPwwFinEvOgYVxmTQq1w/view?usp=sharing" target="_blank" title="Gabarito – 1º EQ 2017">Gabarito</a></li>
+          </ul>
+        </article>
+        <article class="card card--disc" aria-label="Exame Discursivo 2017">
+          <h3>Exame Discursivo</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/19Lg_KlxR2vEukwPPpQtXV7--0getcltF/view?usp=drive_link" target="_blank">Prova de Biologia</a> e <a href="https://drive.google.com/file/d/1qlEnYjh6NXq7rmMVvAQHfyWolGPVbnTo/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+            <li><a href="https://drive.google.com/file/d/1MCQHWRjKzTwZjHqi_oDal6XjJoF_jD7z/view?usp=drive_link" target="_blank">Prova de Química</a> e <a href="https://drive.google.com/file/d/1UJnulqX4hbZlDIj997Kzr-zDltAabbVP/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+            <li><a href="https://drive.google.com/file/d/1qy3LF8ouu7N71f5pmqMscEuUA_vTvuN3/view?usp=drive_link" target="_blank">Prova de História</a> e <a href="https://drive.google.com/file/d/1c2z7lADqxbv2097MAALrqg8ElP0hFjTK/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+            <li><a href="https://drive.google.com/file/d/13ySKmkAvA7BXdQU_zuNNycMb6Wal2nwF/view?usp=drive_link" target="_blank">Prova de Língua Portuguesa</a> e <a href="https://drive.google.com/file/d/1RFZavhq6UyhCdcUEmQ8fe_nf6jLv8rqo/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 2016 ================= -->
+    <section class="year" aria-labelledby="y2016">
+      <h2 id="y2016">2016</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>2º Exame de Qualificação</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1RZiVMSpGgqkul7HOw2xfner71yVRPKFp/view?usp=sharing" target="_blank" title="Prova – 2º EQ 2016">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1F54oCSrr8M89JzQEF-0uIiWIkL_IIadZ/view?usp=sharing" target="_blank" title="Gabarito – 2º EQ 2016">Gabarito</a></li>
+          </ul>
+          <h3>1º Exame de Qualificação</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1uyB2Be3fG9DIFunbqbiPY8TQBcKgYnUa/view?usp=sharing" target="_blank" title="Prova – 1º EQ 2016">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1YLLuEh2D7CLoyg3Fzz8ddCn9nNAkTp7S/view?usp=sharing" target="_blank" title="Gabarito – 1º EQ 2016">Gabarito</a></li>
+          </ul>
+        </article>
+        <article class="card card--disc" aria-label="Exame Discursivo 2016">
+          <h3>Exame Discursivo</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1bOpad8jRHJOZtxlIZriQEYYFuy_770Wp/view?usp=drive_link" target="_blank">Prova de Biologia</a> e <a href="https://drive.google.com/file/d/121TBnYZs03nl5ukulyR8kZxGYvNnuQx9/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+            <li><a href="https://drive.google.com/file/d/1i0r9H_WAR8KUbEJ8al3qj9e4igMwdwRa/view?usp=drive_link" target="_blank">Prova de Química</a> e <a href="https://drive.google.com/file/d/1-duImP0SI42E1IzhTDYac3uq6aRBsTQ9/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+            <li><a href="https://drive.google.com/file/d/19yjaG8S7kOQNjD0w_4koSPiwU-qH1rN6/view?usp=drive_link" target="_blank">Prova de História</a> e <a href="https://drive.google.com/file/d/19hUiSiHyP89rPK4o2iiz8TMpONHUqvop/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+            <li><a href="https://drive.google.com/file/d/1Azf_Wh1th2oe24FOLX06mSp2m-lUNBVD/view?usp=drive_link" target="_blank">Prova de Língua Portuguesa</a> e <a href="https://drive.google.com/file/d/1VhfZK26-BuLwRJC9DzcwnFkA0XTwPOWo/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 2015 ================= -->
+    <section class="year" aria-labelledby="y2015">
+      <h2 id="y2015">2015</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>2º Exame de Qualificação</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1aG5_UMlS3a14qB6T_68FyK6_0KBBRTNj/view?usp=sharing" target="_blank" title="Prova – 2º EQ 2015">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1gSTGbnVGbUHg-wTSfLyZnmpQNkC6hvzH/view?usp=sharing" target="_blank" title="Gabarito – 2º EQ 2015">Gabarito</a></li>
+          </ul>
+          <h3>1º Exame de Qualificação</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1xiXk3rbeJLhXVXQErioi6S5NKm2RRw9O/view?usp=sharing" target="_blank" title="Prova – 1º EQ 2015">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1rSHCTjJCH1CP2BON7qxH6MB2ppJRzqPp/view?usp=sharing" target="_blank" title="Gabarito – 1º EQ 2015">Gabarito</a></li>
+          </ul>
+        </article>
+        <article class="card card--disc" aria-label="Exame Discursivo 2015">
+          <h3>Exame Discursivo</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/16S2DK5vZCRnpfDZoOzXbajpqmSf8CzsE/view?usp=drive_link" target="_blank">Prova de Biologia</a> e <a href="https://drive.google.com/file/d/1NQ8XqEFjAVNIj87tMHxWPZJXG7orBK4O/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+            <li><a href="https://drive.google.com/file/d/1Kg4i9I1y_wbUuPaUbzpkJV6PqYytNFCd/view?usp=drive_link" target="_blank">Prova de Química</a> e <a href="https://drive.google.com/file/d/1g8ps_Dy5bI8DN-8TzA_JKeh8xLKJ1Emw/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+            <li><a href="https://drive.google.com/file/d/1dGygMbLhIFzH14gNA5rt1VhlEpcolQ6Q/view?usp=drive_link" target="_blank">Prova de História</a> e <a href="https://drive.google.com/file/d/1wFva9ud16FnXRgzz6QfEcpcA9HXh2nOx/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+            <li><a href="https://drive.google.com/file/d/1CbHxiH1HgDCsuSnNrN1-fTFeO1WtR6nG/view?usp=drive_link" target="_blank">Prova de Língua Portuguesa</a> e <a href="https://drive.google.com/file/d/1e0kATPIEQrtMqikhCxAUSf52nC3MRkVV/view?usp=drive_link" target="_blank">padrões de respostas</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="monitoria" aria-label="Monitoria e-sk">
+      <p><span class="highlight">Tire suas dúvidas na</span> <span class="muted">Monitoria [e-sk]</span>!<br>
+      Agende o seu atendimento! 🐶<br>
+      <a href="https://www.padlet.com/skued/monitoria">www.padlet.com/skued/monitoria</a></p>
+    </footer>
+  </div>
+</body>
 </html>

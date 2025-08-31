@@ -2,231 +2,319 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skued - Repositório de provas UERJ</title>
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Exo 2', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skued - Repositório de provas • ENEM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #f6f7fb;
+      --surface: #fff;
+      --text: #1f2937;
+      --line: #e5e7eb;
+      --brand-2: #0e1726;
+      --radius: 14px;
+      --shadow: 0 8px 24px rgba(0,0,0,0.06);
+      --link: #0b1736;       /* azul-marinho da logo */
+      --link-hover: #ff0077; /* rosa da marca */
+    }
 
-        .container {
-            max-width: 960px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #ffffff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            border-radius: 8px;
-            text-align: left; /* Align text to the left */
-        }
+    *{ box-sizing: border-box; }
 
-        .logo {
-            max-width: 150px;
-            display: block;
-            margin: 10px auto;
-        }
+    body{
+      font-family: 'Exo 2', sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
-        h1 {
-            text-align: center; /* Center the title */
-            font-weight: 700;
-            font-size: 2.5em;
-            color: #333;
-            margin-top: 0;
-            margin-bottom: 20px;
-        }
+    .container{
+      max-width: 1000px;
+      margin: 28px auto;
+      padding: 0 20px 28px;
+    }
 
-        h2, h3 {
-            text-align: left; /* Headers aligned to the left */
-        }
+    .header{
+      display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px;
+      margin-bottom: 18px;
+    }
+    .logo{ width: 140px; height: auto; display: block; }
+    h1{
+      margin: 0;
+      font-weight: 700;
+      font-size: clamp(22px, 3vw, 32px);
+      text-align: center;
+      color: var(--brand-2);
+    }
 
-        h2 {
-            font-size: 1.6em;
-            color: #666;
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-        h3 {
-            font-size: 2.0em;
-            color: #333;
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
+    /* Ano */
+    .year{
+      margin-top: 28px;
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+    }
+    .year > h2{
+      margin: 0 0 16px;
+      font-size: clamp(18px, 2.3vw, 24px);
+      font-weight: 700;
+      color: var(--brand-2);
+    }
 
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
+    /* Grid de colunas por ano */
+    .columns{
+      display: grid;
+      gap: 16px;
+    }
+    @media (min-width: 860px){
+      .columns{
+        grid-template-columns: 1fr; /* padrão: uma coluna */
+      }
+      .columns:has(.card + .card){
+        grid-template-columns: 1fr 1fr; /* vira duas colunas quando tiver 2 cards */
+        align-items: stretch;
+      }
+    }
 
-        li {
-            margin-bottom: 5px;
-        }
+    /* Cards */
+    .card{
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 100%;
+    }
+    .card h3{
+      margin: 0;
+      font-size: clamp(16px, 2vw, 20px);
+      color: var(--text);
+    }
+    .links{
+      list-style: none; padding: 0; margin: 0;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .links li{ line-height: 1.6; }
 
-        a {
-            color: #007bff;
-            text-decoration: none;
-            font-weight: 600;
-        }
+    /* Links harmonizados */
+    a{
+      color: var(--link);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color .2s ease;
+    }
+    a:hover,
+    a:focus{
+      color: var(--link-hover);
+      text-decoration: underline;
+      outline: none;
+    }
+    a:focus-visible{
+      outline: 2px solid var(--link-hover);
+      outline-offset: 2px;
+    }
 
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .monitoria {
-            background-color: #08093b;
-            color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .monitoria-link {
-            color: #ff0077; /* pink */
-            text-decoration: none;
-        }
-
-        .monitoria-link:hover {
-            text-decoration: underline;
-        }
-    </style>
+    /* Rodapé */
+    .monitoria{
+      margin-top: 28px;
+      background-color: #08093b;
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 18px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .monitoria a{ color: #ff0077; font-weight: 700; }
+    .monitoria a:hover{ text-decoration: underline; }
+    .muted{ color: rgba(255,255,255,0.7); }
+    .highlight{ color: #ff0077; font-weight: 700; }
+  </style>
 </head>
 
 <body>
-    <div class="container">
-        <img src="https://skued.com.br/wp-content/uploads/2024/09/skued-02.png" alt="skued Logo" class="logo">
-        <h1>Skued - Repositório de provas - ENEM</h1>
-        <div class="content">
-            <div class="year">
-                <h3>2024</h2></div>
-                     <h2>1ª Aplicação</h2>
-                <div class="exam">
-                    <p>Prova: <a href="https://drive.google.com/file/d/12abNc2lGhyECr-jH5_oRLlvHOZcAn46P/view?usp=sharing" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1N35e2X87B5XWnsthOFhi1TtWRzSqhn61/view?usp=sharing" target="_blank">Dia 2</a></p>
-                    <p>Gabarito: <a href="https://drive.google.com/file/d/13dLSHdaEos9ZdI3zFpmM8K_I9wuWfT2B/view?usp=sharing" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/11nTE90bf5Vd4lXQszUAy-yspt0AWR1-x/view?usp=sharing" target="_blank">Dia 2</a></p>
-                </div>
-            </div>
-            <div class="year">
-                <h2>2ª Aplicação</h2>
-                <div class="exam">
-                    <p>Prova: <a href="https://drive.google.com/file/d/1qldCiHAN_AhSNI6ojS5HUgmQ1afHaiYb/view?usp=sharing" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1_zox8S2zUNQGi2VBkkR4MjXVtvrWeRbM/view?usp=sharing" target="_blank">Dia 2</a></p>
-                    <p>Gabarito: <a href="https://drive.google.com/file/d/15WvrPOFvFbACCZexFPeuohtp6Jj9Rvoh/view?usp=sharing" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1CFsQUKaR-q-JwWPY3NBGihkyRD_VuLlh/view?usp=sharing" target="_blank">Dia 2</a></p>
-                </div>
-                        <div class="year">
-                <h3>2023</h2></div>
-                     <h2>1ª Aplicação</h2>
-                <div class="exam">
-                    <p>Prova: <a href="https://drive.google.com/file/d/15G490UZlywTvvT4IiFxlar5sNeyOe9xK/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1weOpHSwMJqe1Gr81Vqaf7A-5L0Fz1ssq/view" target="_blank">Dia 2</a></p>
-                    <p>Gabarito: <a href="https://drive.google.com/file/d/1F0wALiVDunuHHXjRg8tHpCoRbHTJ5Y8a/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1FdGbK8whND1c_TvnwZJWTyN79E88BPZs/view" target="_blank">Dia 2</a></p>
-                </div>
-            </div>
-            <div class="year">
-                <h2>2ª Aplicação</h2>
-                <div class="exam">
-                    <p>Prova: <a href="https://drive.google.com/file/d/1Upn7xnJv2RjbvXUCdSoTN6vlqDAa9het/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1uYH-YWb53BGsc8KoFiKNHUuBxrC7W_0K/view" target="_blank">Dia 2</a></p>
-                    <p>Gabarito: <a href="https://drive.google.com/file/d/10je-i4wMDF23XB8h9ql72RuiHy-QBc7Z/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/17RNqprxbQoXKz4kd3z6XZv_DDfhTziAj/view" target="_blank">Dia 2</a></p>
-                </div>
-            </div>
-            
-            <div class="year">
-                <h3>2022</h3>
-                     <h2>1ª Aplicação</h2>
-                <div class="exam">
-                    <p>Prova: <a href="https://drive.google.com/file/d/1r250P-pfNtWqaDmcwSIaINNiVUPCW0c-/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1F0RJCF8LraleDtKaSAHqH5ZM8FeJzj4O/view" target="_blank">Dia 2</a></p>
-                    <p>Gabarito: <a href="https://drive.google.com/file/d/1gIhIcttU6j42IjPadOTQaDK6RSheGuEw/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1X1Qi6p5qE77Y-qBPwNF87MRQxnemYBmq/view" target="_blank">Dia 2</a></p>
-                </div>
-            </div>
-            <div class="year">
-                <h2>2ª Aplicação</h2>
-                <div class="exam">
-                    <p>Prova: <a href="https://drive.google.com/file/d/1gWYrmeRgZlLJNa2dnZFbxgBjnCxhxrME/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/14CXrapb4DPXq-emQtd9bBjpHkszlPYRG/view" target="_blank">Dia 2</a></p>
-                    <p>Gabarito: <a href="https://drive.google.com/file/d/1IbyziU2kHBpGdxLYGS8ajmyMH4u66IZL/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1ubiAYULzBQFx3XBQbLGqFpWnMEgpQp4t/view" target="_blank">Dia 2</a></p>
-                </div>
-            </div>
-            <div class="year">
-                <h3>2021</h3>
-                     <h2>1ª Aplicação</h2>
-                <div class="exam">
-                    <p>Prova: <a href="https://drive.google.com/file/d/1OeyfSEzM1bRqfyFxc6Y0bg3DsjCQpJIO/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1_SgetBR3YoWEMl4Gwe6-kMiaoOVaA_ca/view" target="_blank">Dia 2</a></p>
-                    <p>Gabarito: <a href="https://drive.google.com/file/d/1tzmAgbD7gdwjgUF8g_VeVU5zOqP1N3LC/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1O7zGAJizhkDtrEq3hNXOgBcDvLueUXuI/view" target="_blank">Dia 2</a></p>
-                </div>
-            </div>
-            <div class="year">
-                <h2>2ª Aplicação</h2>
-                <div class="exam">
-                    <p>Prova: <a href="https://drive.google.com/file/d/1fugiyNBftFl15oYIRuJ_nvgRMkX7E7oK/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1Y_AVvIS4zbC8LPJN-zHl-PZ5XLnVe7rJ/view" target="_blank">Dia 2</a></p>
-                    <p>Gabarito: <a href="https://drive.google.com/file/d/1RR0j0H48wZKbwnjuYEV3w34DUUm8dqFF/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1Aq9NKC8dYRiCN97PB7gLhEpdflrFOuwR/view" target="_blank">Dia 2</a></p>
-                </div>
-            </div>
-            <div class="year">
-                <h3>2020</h3>
-                     <h2>1ª Aplicação</h2>
-                <div class="exam">
-                    <p>Prova: <a href="https://drive.google.com/file/d/11e2vwluYO710DI4fmTcbUzM8ORD6JAkf/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1iYat8PY7hwylrGiqeyNyXS3-IB22es6y/view" target="_blank">Dia 2</a></p>
-                    <p>Gabarito: <a href="https://drive.google.com/file/d/1FlBy4MyIi15tmbCvDNYJXNp34Aq9Luix/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1n7MyCh4sF-6tOjDBd7AzBZ1QWhSg0vtO/view" target="_blank">Dia 2</a></p>
-                </div>
-            </div>
-            <div class="year">
-                <h2>2ª Aplicação</h2>
-                <div class="exam">
-                    <p>Prova: <a href="https://drive.google.com/file/d/1RqjofqdvwGZRb8rw_0dNv-VBZ0wonu-C/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/17Orp3u3wYIiYngs-ZSSEei8DzLue5HTT/view" target="_blank">Dia 2</a></p>
-                    <p>Gabarito: <a href="https://drive.google.com/file/d/1yWwXpfHdYv6hNzYCiBNST-_y_sMbhEFA/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1mzIu0dVfgvfXD5-pCOKvoPMKQJW9NS8b/view" target="_blank">Dia 2</a></p>
-                </div>
-            </div>
-                <div class="year">
-                    <h3>2019</h3>
-                    <h2>1ª Aplicação</h2>
-                    <div class="exam">
-                        <p>Prova: <a href="https://drive.google.com/file/d/1L27CjJ-sshL_YorXreS0LJvLK37K1Oq1/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1NurjxLe0bBiKtS8p4QwJgPQuYkalIHrv/view" target="_blank">Dia 2</a></p>
-                        <p>Gabarito: <a href="https://drive.google.com/file/d/1SreqQW7jVAiRo9redz7E7uZMev1ZnO75/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1E095bum_VsiCOmiKgODKD-ZPan0AtEND/view" target="_blank">Dia 2</a></p>
-                    </div>
-                </div>
-                <div class="year">
-                    <h2>2ª Aplicação</h2>
-                    <div class="exam">
-                        <p>Prova: <a href="https://drive.google.com/file/d/1Lbii2sjHO1v72W7QgmX1HdAbhhbiPPCD/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1phNoPJX2X7yRSbCWdYfbsbLbua9ASlHw/view" target="_blank">Dia 2</a></p>
-                        <p>Gabarito: <a href="https://drive.google.com/file/d/1pt06V5xjrBaIrXxJiS3AsJ-WCh0odM8L/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1pGpUKDGy_CAPr3Obc7l3QESytiDIjQ-c/view" target="_blank">Dia 2</a></p>
-                    </div>
-                </div>
-                <div class="year">
-                    <h3>2018</h3>
-                    <h2>1ª Aplicação</h2>
-                    <div class="exam">
-                        <p>Prova: <a href="https://drive.google.com/file/d/1JJY2fIie_wSGYySOYXncj-Hmn2wA8wOl/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1fbqT3uD4430c0sS50e2fOfSLZsaiAy7i/view" target="_blank">Dia 2</a></p>
-                        <p>Gabarito: <a href="https://drive.google.com/file/d/1w5hdR9d1NcSQLJrWMSld1aDQP0zeDS0L/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1f9tNh1qbApsTszHeWF8U1uUMEU8THNin/view" target="_blank">Dia 2</a></p>
-                    </div>
-                </div>
-                <div class="year">
-                    <h2>2ª Aplicação</h2>
-                    <div class="exam">
-                        <p>Prova: <a href="https://drive.google.com/file/d/1tHxXBCZki9ROmBKJkX-AKmtR8VirV5p5/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1qgkd_6XRxrrq488CYJ2L8LB_q0hzMpOA/view" target="_blank">Dia 2</a></p>
-                        <p>Gabarito: <a href="https://drive.google.com/file/d/1L1bpmJiINLCoLjop5ve5nQb7tX_MC3K9/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1zxB4veIlDDvRW4D7D8POsj9uXoDRrqCi/view" target="_blank">Dia 2</a></p>
-                    </div>
-                </div>
-                <div class="year">
-                    <h3>2017</h3>
-                    <h2>1ª Aplicação</h2>
-                    <div class="exam">
-                        <p>Prova: <a href="https://drive.google.com/file/d/1Zka6bys5k5Jk10lLgDUpIoyo9gZrfFaI/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1VDDeSj1JejqpcbbvPGU-gJC9PDEcF_vF/view" target="_blank">Dia 2</a></p>
-                        <p>Gabarito: <a href="https://drive.google.com/file/d/1yXZy1XoYly7WRhtYH7l50KM3d23Sf7VM/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1T62GLyz06VnE7WqQb3uMrrez2xCoZmSe/view" target="_blank">Dia 2</a></p>
-                    </div>
-                </div>
-                <div class="year">
-                    <h2>2ª Aplicação</h2>
-                    <div class="exam">
-                        <p>Prova: <a href="https://drive.google.com/file/d/1jiaNLjFVy-yX1Nc2b_pnGZ8UV-la6cfF/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1iLsX0lH0I5S71NIRnDp-HEhqqH4MWwuc/view" target="_blank">Dia 2</a></p>
-                        <p>Gabarito: <a href="https://drive.google.com/file/d/1nnUnazDwBbDrANJeHZrxWafqFHnoE6v6/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1AO1HkM77xBjWK367LpET0IidFC2JWxFC/view" target="_blank">Dia 2</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <div class="monitoria">
-        <p>Tire suas dúvidas na Monitoria [e-sk]!<br>
-        Agende o seu atendimento! 🐶<br>
-        <a href="https://www.padlet.com/skued/monitoria" class="monitoria-link">www.padlet.com/skued/monitoria</a></p>
-    </div>
-</body>
+  <div class="container">
+    <header class="header">
+      <img src="https://skued.com.br/wp-content/uploads/2024/09/skued-02.png" alt="Logo Skued" class="logo" />
+      <h1>Skued – Repositório de Provas • ENEM</h1>
+    </header>
 
+    <!-- ============== 2024 ============== -->
+    <section class="year" aria-labelledby="y2024">
+      <h2 id="y2024">2024</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>1ª Aplicação</h3>
+          <ul class="links">
+            <li>Prova: <a href="https://drive.google.com/file/d/12abNc2lGhyECr-jH5_oRLlvHOZcAn46P/view?usp=sharing" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1N35e2X87B5XWnsthOFhi1TtWRzSqhn61/view?usp=sharing" target="_blank">Dia 2</a></li>
+            <li>Gabarito: <a href="https://drive.google.com/file/d/13dLSHdaEos9ZdI3zFpmM8K_I9wuWfT2B/view?usp=sharing" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/11nTE90bf5Vd4lXQszUAy-yspt0AWR1-x/view?usp=sharing" target="_blank">Dia 2</a></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>2ª Aplicação</h3>
+          <ul class="links">
+            <li>Prova: <a href="https://drive.google.com/file/d/1qldCiHAN_AhSNI6ojS5HUgmQ1afHaiYb/view?usp=sharing" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1_zox8S2zUNQGi2VBkkR4MjXVtvrWeRbM/view?usp=sharing" target="_blank">Dia 2</a></li>
+            <li>Gabarito: <a href="https://drive.google.com/file/d/15WvrPOFvFbACCZexFPeuohtp6Jj9Rvoh/view?usp=sharing" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1CFsQUKaR-q-JwWPY3NBGihkyRD_VuLlh/view?usp=sharing" target="_blank">Dia 2</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============== 2023 ============== -->
+    <section class="year" aria-labelledby="y2023">
+      <h2 id="y2023">2023</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>1ª Aplicação</h3>
+          <ul class="links">
+            <li>Prova: <a href="https://drive.google.com/file/d/15G490UZlywTvvT4IiFxlar5sNeyOe9xK/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1weOpHSwMJqe1Gr81Vqaf7A-5L0Fz1ssq/view" target="_blank">Dia 2</a></li>
+            <li>Gabarito: <a href="https://drive.google.com/file/d/1F0wALiVDunuHHXjRg8tHpCoRbHTJ5Y8a/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1FdGbK8whND1c_TvnwZJWTyN79E88BPZs/view" target="_blank">Dia 2</a></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>2ª Aplicação</h3>
+          <ul class="links">
+            <li>Prova: <a href="https://drive.google.com/file/d/1Upn7xnJv2RjbvXUCdSoTN6vlqDAa9het/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1uYH-YWb53BGsc8KoFiKNHUuBxrC7W_0K/view" target="_blank">Dia 2</a></li>
+            <li>Gabarito: <a href="https://drive.google.com/file/d/10je-i4wMDF23XB8h9ql72RuiHy-QBc7Z/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/17RNqprxbQoXKz4kd3z6XZv_DDfhTziAj/view" target="_blank">Dia 2</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============== 2022 ============== -->
+    <section class="year" aria-labelledby="y2022">
+      <h2 id="y2022">2022</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>1ª Aplicação</h3>
+          <ul class="links">
+            <li>Prova: <a href="https://drive.google.com/file/d/1r250P-pfNtWqaDmcwSIaINNiVUPCW0c-/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1F0RJCF8LraleDtKaSAHqH5ZM8FeJzj4O/view" target="_blank">Dia 2</a></li>
+            <li>Gabarito: <a href="https://drive.google.com/file/d/1gIhIcttU6j42IjPadOTQaDK6RSheGuEw/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1X1Qi6p5qE77Y-qBPwNF87MRQxnemYBmq/view" target="_blank">Dia 2</a></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>2ª Aplicação</h3>
+          <ul class="links">
+            <li>Prova: <a href="https://drive.google.com/file/d/1gWYrmeRgZlLJNa2dnZFbxgBjnCxhxrME/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/14CXrapb4DPXq-emQtd9bBjpHkszlPYRG/view" target="_blank">Dia 2</a></li>
+            <li>Gabarito: <a href="https://drive.google.com/file/d/1IbyziU2kHBpGdxLYGS8ajmyMH4u66IZL/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1ubiAYULzBQFx3XBQbLGqFpWnMEgpQp4t/view" target="_blank">Dia 2</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============== 2021 ============== -->
+    <section class="year" aria-labelledby="y2021">
+      <h2 id="y2021">2021</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>1ª Aplicação</h3>
+          <ul class="links">
+            <li>Prova: <a href="https://drive.google.com/file/d/1OeyfSEzM1bRqfyFxc6Y0bg3DsjCQpJIO/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1_SgetBR3YoWEMl4Gwe6-kMiaoOVaA_ca/view" target="_blank">Dia 2</a></li>
+            <li>Gabarito: <a href="https://drive.google.com/file/d/1tzmAgbD7gdwjgUF8g_VeVU5zOqP1N3LC/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1O7zGAJizhkDtrEq3hNXOgBcDvLueUXuI/view" target="_blank">Dia 2</a></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>2ª Aplicação</h3>
+          <ul class="links">
+            <li>Prova: <a href="https://drive.google.com/file/d/1fugiyNBftFl15oYIRuJ_nvgRMkX7E7oK/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1Y_AVvIS4zbC8LPJN-zHl-PZ5XLnVe7rJ/view" target="_blank">Dia 2</a></li>
+            <li>Gabarito: <a href="https://drive.google.com/file/d/1RR0j0H48wZKbwnjuYEV3w34DUUm8dqFF/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1Aq9NKC8dYRiCN97PB7gLhEpdflrFOuwR/view" target="_blank">Dia 2</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============== 2020 ============== -->
+    <section class="year" aria-labelledby="y2020">
+      <h2 id="y2020">2020</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>1ª Aplicação</h3>
+          <ul class="links">
+            <li>Prova: <a href="https://drive.google.com/file/d/11e2vwluYO710DI4fmTcbUzM8ORD6JAkf/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1iYat8PY7hwylrGiqeyNyXS3-IB22es6y/view" target="_blank">Dia 2</a></li>
+            <li>Gabarito: <a href="https://drive.google.com/file/d/1FlBy4MyIi15tmbCvDNYJXNp34Aq9Luix/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1n7MyCh4sF-6tOjDBd7AzBZ1QWhSg0vtO/view" target="_blank">Dia 2</a></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>2ª Aplicação</h3>
+          <ul class="links">
+            <li>Prova: <a href="https://drive.google.com/file/d/1RqjofqdvwGZRb8rw_0dNv-VBZ0wonu-C/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/17Orp3u3wYIiYngs-ZSSEei8DzLue5HTT/view" target="_blank">Dia 2</a></li>
+            <li>Gabarito: <a href="https://drive.google.com/file/d/1yWwXpfHdYv6hNzYCiBNST-_y_sMbhEFA/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1mzIu0dVfgvfXD5-pCOKvoPMKQJW9NS8b/view" target="_blank">Dia 2</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============== 2019 ============== -->
+    <section class="year" aria-labelledby="y2019">
+      <h2 id="y2019">2019</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>1ª Aplicação</h3>
+          <ul class="links">
+            <li>Prova: <a href="https://drive.google.com/file/d/1L27CjJ-sshL_YorXreS0LJvLK37K1Oq1/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1NurjxLe0bBiKtS8p4QwJgPQuYkalIHrv/view" target="_blank">Dia 2</a></li>
+            <li>Gabarito: <a href="https://drive.google.com/file/d/1SreqQW7jVAiRo9redz7E7uZMev1ZnO75/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1E095bum_VsiCOmiKgODKD-ZPan0AtEND/view" target="_blank">Dia 2</a></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>2ª Aplicação</h3>
+          <ul class="links">
+            <li>Prova: <a href="https://drive.google.com/file/d/1Lbii2sjHO1v72W7QgmX1HdAbhhbiPPCD/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1phNoPJX2X7yRSbCWdYfbsbLbua9ASlHw/view" target="_blank">Dia 2</a></li>
+            <li>Gabarito: <a href="https://drive.google.com/file/d/1pt06V5xjrBaIrXxJiS3AsJ-WCh0odM8L/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1pGpUKDGy_CAPr3Obc7l3QESytiDIjQ-c/view" target="_blank">Dia 2</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============== 2018 ============== -->
+    <section class="year" aria-labelledby="y2018">
+      <h2 id="y2018">2018</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>1ª Aplicação</h3>
+          <ul class="links">
+            <li>Prova: <a href="https://drive.google.com/file/d/1JJY2fIie_wSGYySOYXncj-Hmn2wA8wOl/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1fbqT3uD4430c0sS50e2fOfSLZsaiAy7i/view" target="_blank">Dia 2</a></li>
+            <li>Gabarito: <a href="https://drive.google.com/file/d/1w5hdR9d1NcSQLJrWMSld1aDQP0zeDS0L/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1f9tNh1qbApsTszHeWF8U1uUMEU8THNin/view" target="_blank">Dia 2</a></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>2ª Aplicação</h3>
+          <ul class="links">
+            <li>Prova: <a href="https://drive.google.com/file/d/1tHxXBCZki9ROmBKJkX-AKmtR8VirV5p5/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1qgkd_6XRxrrq488CYJ2L8LB_q0hzMpOA/view" target="_blank">Dia 2</a></li>
+            <li>Gabarito: <a href="https://drive.google.com/file/d/1L1bpmJiINLCoLjop5ve5nQb7tX_MC3K9/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1zxB4veIlDDvRW4D7D8POsj9uXoDRrqCi/view" target="_blank">Dia 2</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============== 2017 ============== -->
+    <section class="year" aria-labelledby="y2017">
+      <h2 id="y2017">2017</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>1ª Aplicação</h3>
+          <ul class="links">
+            <li>Prova: <a href="https://drive.google.com/file/d/1Zka6bys5k5Jk10lLgDUpIoyo9gZrfFaI/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1VDDeSj1JejqpcbbvPGU-gJC9PDEcF_vF/view" target="_blank">Dia 2</a></li>
+            <li>Gabarito: <a href="https://drive.google.com/file/d/1yXZy1XoYly7WRhtYH7l50KM3d23Sf7VM/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1T62GLyz06VnE7WqQb3uMrrez2xCoZmSe/view" target="_blank">Dia 2</a></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>2ª Aplicação</h3>
+          <ul class="links">
+            <li>Prova: <a href="https://drive.google.com/file/d/1jiaNLjFVy-yX1Nc2b_pnGZ8UV-la6cfF/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1iLsX0lH0I5S71NIRnDp-HEhqqH4MWwuc/view" target="_blank">Dia 2</a></li>
+            <li>Gabarito: <a href="https://drive.google.com/file/d/1nnUnazDwBbDrANJeHZrxWafqFHnoE6v6/view" target="_blank">Dia 1</a> | <a href="https://drive.google.com/file/d/1AO1HkM77xBjWK367LpET0IidFC2JWxFC/view" target="_blank">Dia 2</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <footer class="monitoria" aria-label="Monitoria e-sk">
+      <p><span class="highlight">Tire suas dúvidas na</span> <span class="muted">Monitoria [e-sk]</span>!<br>
+      Agende o seu atendimento! 🐶<br>
+      <a href="https://www.padlet.com/skued/monitoria" class="monitoria-link">www.padlet.com/skued/monitoria</a></p>
+    </footer>
+  </div>
+</body>
 </html>
