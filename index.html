@@ -1,157 +1,192 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Repositório de provas</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Repositório de provas • Skued</title>
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
+    :root{
       --bg: #f6f7fb;
       --surface: #fff;
       --text: #1f2937;
+      --muted-text:#6b7280;
+      --line: #e5e7eb;
       --brand-2: #0e1726;
-      --link: #0b1736;       /* azul marinho da logo */
-      --link-hover: #ff0077; /* rosa da marca */
-      --radius: 14px;
-      --shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      --link: #0b1736;
+      --link-hover: #ff0077;
+      --radius: 16px;
+      --shadow: 0 12px 28px rgba(0,0,0,0.06);
+      --shadow-hover: 0 16px 36px rgba(0,0,0,0.10);
+      --chip-bg: #fdf6fa;
+      --chip-border:#ff0077;
     }
 
-    * {
-      box-sizing: border-box;
+    *{ box-sizing:border-box; }
+    body{
+      font-family:'Exo 2',sans-serif;
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
-    body {
-      font-family: 'Exo 2', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: var(--bg);
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    .container {
-      max-width: 960px;
+    .container{
+      max-width: 1100px;
       margin: 28px auto;
-      padding: 20px;
-      background: var(--surface);
-      box-shadow: var(--shadow);
-      border-radius: var(--radius);
-      text-align: center;
+      padding: 0 20px 28px;
     }
 
-    .logo {
-      max-width: 150px;
-      margin: 20px auto;
-      display: block;
+    .header{
+      display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px;
+      margin-bottom: 16px;
+      text-align:center;
     }
-
-    h1,
-    h2 {
-      font-weight: 700;
+    .logo{ width:150px; height:auto; display:block; }
+    h1{
+      margin: 0;
+      font-weight:700;
+      font-size: clamp(24px, 4vw, 40px);
       color: var(--brand-2);
+      letter-spacing:.2px;
+    }
+    .subtitle{
+      margin: 0;
+      color: var(--muted-text);
+      font-size: clamp(14px, 2.2vw, 18px);
     }
 
-    h1 {
-      margin-bottom: 5px;
-      font-size: 2.5em;
+    .grid{
+      display:grid;
+      gap: 18px;
+      margin-top: 26px;
+    }
+    @media (min-width: 860px){
+      .grid{ grid-template-columns: repeat(3, 1fr); }
     }
 
-    h2 {
-      font-size: 1.8em;
-      margin-top: 25px;
-      margin-bottom: 20px;
+    .card{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      gap: 14px;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+      border-color:#e0e3ea;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:0 0 auto 0;
+      height:4px;
+      background: linear-gradient(90deg, var(--link), var(--link-hover));
+      opacity:.12;
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
+    .card h2{
+      margin:0;
+      font-size: clamp(18px, 2.2vw, 22px);
+      color: var(--brand-2);
+      line-height: 1.3;
     }
-
-    li {
-      padding: 10px;
-    }
-
-    /* Links harmonizados */
-    a {
-      color: var(--link);
+    .card h2 a{
+      color: inherit;
       text-decoration: none;
-      font-weight: 600;
+      display: inline-block;
       transition: color .2s ease;
     }
-
-    a:hover,
-    a:focus {
+    .card h2 a:hover,
+    .card h2 a:focus{
       color: var(--link-hover);
       text-decoration: underline;
       outline: none;
     }
-
-    a:focus-visible {
+    .card h2 a:focus-visible{
       outline: 2px solid var(--link-hover);
-      outline-offset: 2px;
+      outline-offset: 3px;
+      border-radius: 6px;
     }
 
-    /* Rodapé */
-    .highlight {
-      color: #ff0077;
+    .card p{
+      margin:0;
+      color: var(--muted-text);
+      line-height:1.5;
+      font-size: 15px;
+    }
+
+    .chip{
+      align-self:flex-start;
+      background: var(--chip-bg);
+      border-left: 6px solid var(--chip-border);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
       font-weight: 700;
+      color: #a1225b;
     }
 
-    .muted {
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    .monitoria {
+    /* rodapé */
+    .highlight { color: #ff0077; font-weight: 700; }
+    .muted{ color: rgba(255,255,255,0.7); }
+    .monitoria{
       margin-top: 28px;
-      background-color: #08093b;
-      color: #fff;
-      border-radius: var(--radius);
+      background-color:#08093b;
+      color:#fff;
+      border-radius: 16px;
       padding: 18px;
-      text-align: center;
+      text-align:center;
       box-shadow: var(--shadow);
     }
-
-    .monitoria a {
-      color: #ff0077;
-      font-weight: 700;
-    }
-
-    .monitoria a:hover {
-      text-decoration: underline;
-    }
+    .monitoria a{ color:#ff0077; font-weight:700; text-decoration:none; }
+    .monitoria a:hover{ text-decoration: underline; }
   </style>
 </head>
-
 <body>
   <div class="container">
-    <img src="https://skued.com.br/wp-content/uploads/2024/09/skued-02.png" alt="skued Logo" class="logo">
-    <h1>Repositório de provas</h1>
+    <header class="header">
+      <img src="https://skued.com.br/wp-content/uploads/2024/09/skued-02.png" alt="Logo Skued" class="logo" />
+      <h1>Repositório de provas</h1>
+      <p class="subtitle">Provas e gabaritos organizados por vestibular</p>
+    </header>
 
-    <h2>Exame Nacional do Ensino Médio (ENEM)</h2>
-    <ul>
-      <li><a href="provas_enem.html">Acessar provas e gabaritos</a></li>
-    </ul>
+    <main class="grid" aria-label="Seções do repositório">
+      <!-- ENEM -->
+      <article class="card">
+        <span class="chip">Atualizado</span>
+        <h2><a href="provas_enem.html">ENEM – Exame Nacional do Ensino Médio</a></h2>
+        <p>Acesse provas das quatro áreas do conhecimento nas duas aplicações anuais do exame.</p>
+      </article>
 
-    <h2>Universidade do Estado do Rio de Janeiro (UERJ)</h2>
-    <ul>
-      <li><a href="provas_uerj.html">Acessar provas e gabaritos</a></li>
-    </ul>
+      <!-- UERJ -->
+      <article class="card">
+        <span class="chip">Atualizado</span>
+        <h2><a href="provas_uerj.html">UERJ – Universidade do Estado do Rio de Janeiro</a></h2>
+        <p>Confira os Exames de Qualificação e os Exames Discursivos de anos anteriores.</p>
+      </article>
 
-    <h2>Universidade de Vassouras (Univassouras)</h2>
-    <ul>
-      <li><a href="provas_vassouras.html">Acessar provas e gabaritos</a></li>
-    </ul>
-  </div>
+      <!-- Univassouras -->
+      <article class="card">
+        <span class="chip">Atualizado</span>
+        <h2><a href="provas_vassouras.html">Univassouras – Universidade de Vassouras</a></h2>
+        <p>Encontre provas objetivas e discursivas aplicadas nos diferentes semestres do vestibular.</p>
+      </article>
+    </main>
 
-  <footer class="monitoria" aria-label="Monitoria e-sk">
-    <p><span class="highlight">Tire suas dúvidas na</span> <span class="muted">Monitoria [e-sk]</span>!<br>
+    <footer class="monitoria" aria-label="Monitoria e-sk">
+      <p><span class="highlight">Tire suas dúvidas na</span> <span class="muted">Monitoria [e-sk]</span>!<br>
       Agende o seu atendimento! 🐶<br>
-      <a href="https://www.padlet.com/skued/monitoria">www.padlet.com/skued/monitoria</a>
-    </p>
-  </footer>
+      <a href="https://www.padlet.com/skued/monitoria">www.padlet.com/skued/monitoria</a></p>
+    </footer>
+  </div>
 </body>
-
 </html>
