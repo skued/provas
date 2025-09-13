@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skued – Repositório de Provas • Unificado: FMP/Petrópolis e FMC/Campos (Medicina)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #f6f7fb;
+      --surface: #fff;
+      --text: #1f2937;
+      --line: #e5e7eb;
+      --brand-2: #0e1726;
+      --radius: 14px;
+      --shadow: 0 8px 24px rgba(0,0,0,0.06);
+      --link: #0b1736;         /* azul marinho da logo */
+      --link-hover: #ff0077;   /* rosa da marca */
+
+      /* mesmos tokens usados na FGV para a pill azul */
+      --disc-bg: #fdf6fa;
+      --disc-bar: #ff0077;
+      --pill-bg: #eef2ff;
+      --pill-text: #0b1736;
+      --pill-border: #c7d2fe;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      font-family:'Exo 2',sans-serif;
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .container{ max-width: 1000px; margin: 28px auto; padding: 0 20px 28px; }
+
+    .header{
+      display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px;
+      margin-bottom: 14px; text-align:center;
+    }
+    .logo{ width:140px; height:auto; display:block; }
+    h1{ margin:0; font-weight:700; font-size: clamp(22px, 3vw, 32px); color: var(--brand-2); }
+
+    /* pill azul idêntica à FGV */
+    .pill{
+      margin-top: 6px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size: 13px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--pill-bg);
+      color: var(--pill-text);
+      border: 1px solid var(--pill-border);
+    }
+
+    .year{ margin-top: 28px; border-top: 1px solid var(--line); padding-top: 22px; }
+    .year > h2{ margin:0 0 16px; font-size: clamp(18px, 2.3vw, 24px); font-weight:700; color: var(--brand-2); }
+
+    .columns{ display: grid; gap: 16px; }
+    @media (min-width: 860px){
+      .columns{ grid-template-columns: 1fr; } /* 1 coluna por ano */
+    }
+
+    .card{
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px 16px 14px;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      min-height: 100%;
+    }
+    .card h3{ margin:0; font-size: clamp(16px, 2vw, 20px); color: var(--text); }
+
+    .links{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:6px; }
+    .links li{ line-height:1.5; }
+
+    a{ color: var(--link); text-decoration:none; font-weight:600; transition: color .2s ease; }
+    a:hover, a:focus{ color: var(--link-hover); text-decoration: underline; outline: none; }
+    a:focus-visible{ outline: 2px solid var(--link-hover); outline-offset: 2px; }
+
+    /* Rodapé */
+    .highlight { color: #ff0077; font-weight: 700; }
+    .muted{ color: rgba(255,255,255,0.7); }
+    .monitoria{
+      margin-top: 28px; background-color:#08093b; color:#fff; border-radius: var(--radius);
+      padding: 18px; text-align:center; box-shadow: var(--shadow);
+    }
+    .monitoria a{ color:#ff0077; font-weight:700; text-decoration:none; }
+    .monitoria a:hover{ text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <img src="https://skued.com.br/wp-content/uploads/2024/09/skued-02.png" alt="Logo Skued" class="logo" />
+      <h1>Skued – Repositório de Provas • Unificado: FMP/Petrópolis e FMC/Campos</h1>
+      <span class="pill" aria-label="Vestibular Unificado - Campos e Petrópolis (RJ)">Vestibular Unificado - Campos e Petrópolis (RJ)</span>
+    </header>
+
+    <!-- ===== 2016 ===== -->
+    <section class="year" aria-labelledby="y2016">
+      <h2 id="y2016">2016</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>Vestibular</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1Jz2FQGHhzVdiSQ8PLXFJXESLbbygZImN/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1wHegGDME0Ri_Be-AgbjXbAZ3iKeORZPN/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Gabarito das Objetivas</a></li>
+            <li><a href="https://drive.google.com/file/d/18VqFQb0FfcEKoHzyr7m_fWP4fvEvXM-_/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Gabarito das Discursivas</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== 2015 ===== -->
+    <section class="year" aria-labelledby="y2015">
+      <h2 id="y2015">2015</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>Vestibular</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1BkH-YLKCldP_jk8jrE3dO0KZXUbURKla/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/19g2VwUq7m6POLHvaqWPbFTTzWQFfmDwP/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Gabarito das Objetivas</a></li>
+            <li><a href="https://drive.google.com/file/d/1byvgn4BMQvORRpRzrOh-K6hVHptGOTZ2/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Gabarito das Discursivas</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== 2014 ===== -->
+    <section class="year" aria-labelledby="y2014">
+      <h2 id="y2014">2014</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>Vestibular</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1u6rP0jxUUrLmqyFcrTW9M5J_k8UlkcfS/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/10z03EXLX4Kmw_-S7xuM1OjT3d9w34Eca/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Gabarito das Objetivas</a></li>
+            <li><a href="https://drive.google.com/file/d/1LRXPDX6rTYo4BqkioFan-CWbnCC6gyKS/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Gabarito das Discursivas</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== 2013 ===== -->
+    <section class="year" aria-labelledby="y2013">
+      <h2 id="y2013">2013</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>Vestibular</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1wLZ-P00ceCCNSFTZVgFTvCaTp-45mAnx/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1BbEGQMQjQ3uFFyf7LAtGj-poTMLl6Mr4/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Gabarito das Objetivas</a></li>
+            <li><a href="https://drive.google.com/file/d/1-O5NC1rtubPLt1wNikurLh4wF5gj0xvB/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Gabarito das Discursivas</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== 2012 ===== -->
+    <section class="year" aria-labelledby="y2012">
+      <h2 id="y2012">2012</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>Vestibular</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1ed_vQJSYKVb35RnPKXISql-4OT29b73b/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1XMBGz3Rh0ijqXzHlMP76sL-xkzBKf7Kn/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Gabarito das Objetivas</a></li>
+            <li><a href="https://drive.google.com/file/d/1CEEx8qduaJ42C5q4teju_tP2DZYXJVCG/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Gabarito das Discursivas</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== 2011 ===== -->
+    <section class="year" aria-labelledby="y2011">
+      <h2 id="y2011">2011</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>Vestibular</h3>
+          <ul class="links">
+            <!-- Apenas o link fornecido foi incluído -->
+            <li><a href="https://drive.google.com/file/d/1IRR5rDsOuAxb3E9fSZ8hCxYmf4s0n5bz/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Gabarito das Objetivas</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== 2010 ===== -->
+    <section class="year" aria-labelledby="y2010">
+      <h2 id="y2010">2010</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>Vestibular</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1bt3k-BlZWYXmohuHD2Jq8qaMGlYvM6Kt/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1IRR5rDsOuAxb3E9fSZ8hCxYmf4s0n5bz/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Gabarito das Objetivas</a></li>
+            <li><a href="https://drive.google.com/file/d/1Px1rEqD8RVhicD24OT9kR23HMu0qo2-e/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Gabarito das Discursivas</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== 2009 ===== -->
+    <section class="year" aria-labelledby="y2009">
+      <h2 id="y2009">2009</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>Vestibular</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1RvCWqCOFX9MmLamh3rf9l9UywEEHa526/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1o2T6WQRfvt7BT9AKGsZN9CPG_G2XJNHi/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Gabarito das Objetivas</a></li>
+            <li><a href="https://drive.google.com/file/d/1Px1rEqD8RVhicD24OT9kR23HMu0qo2-e/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Gabarito das Discursivas</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== 2008 ===== -->
+    <section class="year" aria-labelledby="y2008">
+      <h2 id="y2008">2008</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>Vestibular</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/18_uGmp9JdVIIdwFKDsjP7Q6l1aSnVU8f/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1TOR98D0RI4pGge-qa5YJd0864Frt1WSp/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Gabarito das Objetivas</a></li>
+            <li><a href="https://drive.google.com/file/d/1-F8dcqJiMlOPcGFPwsdT-DQqRMH1NP6r/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Gabarito das Discursivas</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== 2007 ===== -->
+    <section class="year" aria-labelledby="y2007">
+      <h2 id="y2007">2007</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>Vestibular</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/18_uGmp9JdVIIdwFKDsjP7Q6l1aSnVU8f/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/10UyiXeISgGS9UQHp3t6XGttwdxqGnWws/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Gabarito das Objetivas</a></li>
+            <li><a href="https://drive.google.com/file/d/1D5ehgvsq3xhZ51pFTl0fx2puWFAx8o8q/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Gabarito das Discursivas</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== 2006 ===== -->
+    <section class="year" aria-labelledby="y2006">
+      <h2 id="y2006">2006</h2>
+      <div class="columns">
+        <article class="card">
+          <h3>Vestibular</h3>
+          <ul class="links">
+            <li><a href="https://drive.google.com/file/d/1SJ-Me47x8D_HkGAvqY8uFU9y2k7uVMhd/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Prova</a></li>
+            <li><a href="https://drive.google.com/file/d/1ReVG21AZiDUZZ-waTVVatgqEgvNycdNc/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Gabarito das Objetivas</a></li>
+            <li><a href="https://drive.google.com/file/d/1ivQULIhh_6f_vcKnxXcRNCSLkesCfm5m/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Gabarito das Discursivas</a></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="monitoria" aria-label="Monitoria e-sk">
+      <p><span class="highlight">Tire suas dúvidas na</span> <span class="muted">Monitoria [e-sk]</span>!<br>
+      Agende o seu atendimento! 🐶<br>
+      <a href="https://www.padlet.com/skued/monitoria">www.padlet.com/skued/monitoria</a></p>
+    </footer>
+  </div>
+</body>
+</html>
